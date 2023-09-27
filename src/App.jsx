@@ -18,7 +18,7 @@ const App = () => {
                     </nav>
                 </header>
 
-                <main className="relative flex flex-col justify-center items-center bg-white my-[13rem] rounded-lg px-8">
+                <main className="relative flex flex-col justify-center items-center bg-white my-[13rem] rounded-lg px-6">
                     <img
                         src={masterCraft}
                         alt="Master craft logo"
@@ -33,7 +33,7 @@ const App = () => {
                             neck and eye strain.
                         </p>
                         <div className="flex justify-between gap-1">
-                            <button className=" px-[2.35rem] py-4 rounded-[2rem] bg-primary-moderate-cyan text-white font-bold">
+                            <button className=" px-11 py-4 rounded-[2rem] bg-primary-moderate-cyan text-white font-bold">
                                 Back this project
                             </button>
                             <button>
