@@ -2,7 +2,7 @@ import logo from '../src/assets/images/logo.svg';
 import hamburger from '../src/assets/images/icon-hamburger.svg';
 import masterCraft from '../src/assets/images/logo-mastercraft.svg';
 import Bookmark from './components/UI/Bookmark';
-import ProgressBar from './components/ProgressBar/ProgressBar';
+import ProgressBar from './components/UI/ProgressBar';
 
 const App = () => {
     return (
