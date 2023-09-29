@@ -1,21 +1,32 @@
-import logo from '../src/assets/images/logo.svg';
 import hamburger from '../src/assets/images/icon-hamburger.svg';
 import masterCraft from '../src/assets/images/logo-mastercraft.svg';
+
+import { useMobileMenu } from './contexts/MobileMenuContext';
+
+import Logo from './components/UI/Logo';
 import Bookmark from './components/UI/Bookmark';
 import ProgressBar from './components/UI/ProgressBar';
+import MobileMenuOverlay from './components/UI/MobileMenu';
 
 const App = () => {
+    const { mobileMenuVisible, setMobileMenuVisible } = useMobileMenu();
+
     return (
         <div className="min-h-screen bg-neutral-dark-gray/5">
             <div className="min-h-[42dvh] bg-bg-hero-mobile bg-[100%,auto] bg-no-repeat bg-top px-6 py-8">
                 <header className="flex justify-between">
-                    <span>
-                        <img src={logo} alt="Crowdfund logo" />
-                    </span>
-                    <nav>
-                        <button>
-                            <img src={hamburger} alt="Menu toggle" />
-                        </button>
+                    <Logo />
+                    <nav className="relative">
+                        {mobileMenuVisible && (
+                            <MobileMenuOverlay
+                                setMobileMenuVisible={setMobileMenuVisible}
+                            />
+                        )}
+                        {!mobileMenuVisible && (
+                            <button onClick={() => setMobileMenuVisible(true)}>
+                                <img src={hamburger} alt="Menu toggle" />
+                            </button>
+                        )}
                     </nav>
                 </header>
 
