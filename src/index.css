@@ -1,12 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
     font-family: Commissioner;
     src: url('/src/assets/fonts/Commissioner-VariableFont_FLAR\,VOLM\,slnt\,wght.ttf');
     font-weight: 400 700;
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 @layer base {
     html {
