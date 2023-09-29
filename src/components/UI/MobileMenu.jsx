@@ -17,7 +17,10 @@ const MobileMenu = () => {
                     <img src={closeMenu} alt="Exit menu" />
                 </button>
             </div>
-            <ul className="grid grid-rows-3 my-[5rem] rounded-lg bg-white font-medium">
+            <ul
+                className="grid grid-rows-3 my-[5rem] rounded-lg bg-white font-medium"
+                onClick={() => setMobileMenuVisible(false)}
+            >
                 <li className="first-of-type:border-b-2 p-6">
                     <a href="#About page">About</a>
                 </li>
