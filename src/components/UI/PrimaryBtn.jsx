@@ -10,7 +10,7 @@ const PrimaryBtn = ({ onClick, isDisabled, children }) => {
                     ? `bg-primary-moderate-cyan`
                     : `bg-neutral-dark-gray/50`
             }`}
-            disabled={isDisabled ? isDisabled : false}
+            disabled={isDisabled ?? false}
             onClick={onClick ? onClick : null}
         >
             {children}
