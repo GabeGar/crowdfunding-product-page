@@ -1,4 +1,7 @@
-const PrimaryBtn = ({ onClick, isDisabled, children }) => {
+import { useProjectSelection } from '../../contexts/ProjectSelectionContext';
+
+const PrimaryBtn = ({ isDisabled, children }) => {
+    const { setSelectionMenuIsVisible } = useProjectSelection();
     const isBookMarkSibling = children === 'Back this project';
 
     return (
@@ -11,7 +14,7 @@ const PrimaryBtn = ({ onClick, isDisabled, children }) => {
                     : `bg-neutral-dark-gray/50`
             }`}
             disabled={isDisabled ?? false}
-            onClick={onClick ? onClick : null}
+            onClick={() => setSelectionMenuIsVisible(true)}
         >
             {children}
         </button>
