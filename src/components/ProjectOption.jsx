@@ -12,7 +12,7 @@ const ProjectOption = ({
     const { selectedID, setSelectedID, selectionMenuIsVisible } =
         useProjectSelection();
 
-    const checked = selectedID === id;
+    const isChecked = selectedID === id;
     const outOfStock = remaining === 0 ? true : false;
     const isBasicPledge = selectionMenuIsVisible && !price && !remaining;
 
@@ -36,7 +36,7 @@ const ProjectOption = ({
                         id={id}
                         name="projectOption"
                         onChange={() => setSelectedID(id)}
-                        checked={checked}
+                        checked={isChecked}
                         disabled={outOfStock ?? false}
                     />
                 )}

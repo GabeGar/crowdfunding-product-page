@@ -7,12 +7,18 @@ import data from '../data/data.json';
 import closeModal from '../assets/images/icon-close-modal.svg';
 import Overlay from './UI/Overlay';
 import ProjectOption from './ProjectOption';
+import SecondaryBtn from './UI/SecondaryBtn';
 
 const ProjectSelectionModal = () => {
     const { setSelectedID, selectionMenuIsVisible, setSelectionMenuIsVisible } =
         useProjectSelection();
 
     const showRadio = selectionMenuIsVisible ?? false;
+
+    const handleExitModal = () => {
+        setSelectionMenuIsVisible(false);
+        setSelectedID(null);
+    };
 
     useEffect(() => {
         const html = document.querySelector('html');
@@ -30,14 +36,9 @@ const ProjectSelectionModal = () => {
                     <h2 className=" text-lg text-neutral-black font-bold">
                         Back This Project
                     </h2>
-                    <button
-                        onClick={() => {
-                            setSelectionMenuIsVisible(false);
-                            setSelectedID(null);
-                        }}
-                    >
+                    <SecondaryBtn onClick={handleExitModal}>
                         <img src={closeModal} alt="exit selection menu" />
-                    </button>
+                    </SecondaryBtn>
                 </div>
                 <p>
                     Want to support us in bringing Mastercraft Bamboo Monitor

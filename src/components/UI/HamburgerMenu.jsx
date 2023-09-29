@@ -1,14 +1,19 @@
 import { useMobileMenu } from '../../contexts/MobileMenuContext';
 
 import hamburger from '../../assets/images/icon-hamburger.svg';
+import SecondaryBtn from './SecondaryBtn';
 
 const HamburgerMenu = () => {
     const { setMobileMenuVisible } = useMobileMenu();
 
+    const handleMobileMenuVisibility = () => {
+        setMobileMenuVisible(true);
+    };
+
     return (
-        <button onClick={() => setMobileMenuVisible(true)}>
+        <SecondaryBtn onClick={handleMobileMenuVisibility}>
             <img src={hamburger} alt="Menu toggle" />
-        </button>
+        </SecondaryBtn>
     );
 };
 
