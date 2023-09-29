@@ -31,7 +31,7 @@ const ProjectSelectionModal = () => {
 
     return (
         <Overlay>
-            <div className="flex flex-col gap-4 mt-[5.5rem] bg-white rounded-lg p-6 text-neutral-dark-gray">
+            <div className="flex flex-col gap-4 my-[5.5rem] bg-white rounded-lg p-6 text-neutral-dark-gray">
                 <div className="flex justify-between">
                     <h2 className=" text-lg text-neutral-black font-bold">
                         Back This Project
