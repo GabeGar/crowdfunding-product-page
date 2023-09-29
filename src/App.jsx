@@ -8,6 +8,7 @@ import Bookmark from './components/UI/Bookmark';
 import ProgressBar from './components/UI/ProgressBar';
 import MobileMenuOverlay from './components/UI/MobileMenuOverlay';
 import ProjectOption from './components/ProjectOption';
+import PrimaryBtn from './components/UI/PrimaryBtn';
 
 const App = () => {
     const { mobileMenuVisible, setMobileMenuVisible } = useMobileMenu();
@@ -47,12 +48,8 @@ const App = () => {
                                     reduce neck and eye strain.
                                 </p>
                                 <div className="flex justify-between gap-1">
-                                    <button className="px-11 py-4 rounded-[2rem] bg-primary-moderate-cyan text-white font-bold">
-                                        Back this project
-                                    </button>
-                                    <button>
-                                        <Bookmark />
-                                    </button>
+                                    <PrimaryBtn>Back this project</PrimaryBtn>
+                                    <Bookmark />
                                 </div>
                             </div>
                         </section>

@@ -1,13 +1,17 @@
 const PrimaryBtn = ({ onClick, isDisabled, children }) => {
+    const isBookMarkSibling = children === 'Back this project';
+
     return (
         <button
-            className={`px-8 py-3 rounded-[2rem] ${
+            className={`${
+                isBookMarkSibling ? `px-11 py-4` : `px-8 py-3`
+            } rounded-[2rem] text-white font-bold self-start ${
                 !isDisabled
                     ? `bg-primary-moderate-cyan`
                     : `bg-neutral-dark-gray/50`
-            } text-white font-bold self-start`}
-            disabled={isDisabled}
-            onClick={onClick}
+            }`}
+            disabled={isDisabled ? isDisabled : false}
+            onClick={onClick ? onClick : null}
         >
             {children}
         </button>
