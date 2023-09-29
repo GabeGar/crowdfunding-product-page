@@ -18,5 +18,10 @@ export default {
             },
         },
     },
-    plugins: [],
+    plugins: [
+        function ({ addVariant }) {
+            addVariant('all-child', '& > *');
+            addVariant('not-last-child', '& > *:not(:last-child)');
+        },
+    ],
 };

@@ -27,20 +27,37 @@ const MobileMenu = () => {
                     <img src={closeMenu} alt="Exit menu" />
                 </button>
             </div>
-            <ul
-                className="grid grid-rows-3 my-[5rem] rounded-lg bg-white font-medium"
-                onClick={() => setMobileMenuVisible(false)}
-            >
-                <li className="first-of-type:border-b-2 p-6">
-                    <a href="#About page">About</a>
-                </li>
-                <li className="[&:nth-child(2)]:border-b-2 p-6">
-                    <a href="#Discover page">Discover</a>
-                </li>
-                <li className="p-6">
-                    <a href="#Get Started page">Get Started</a>
-                </li>
-            </ul>
+            <nav>
+                <ul className="grid grid-rows-3 my-[5rem] rounded-lg bg-white font-medium all-child:p-6 not-last-child:border-b-2">
+                    <li>
+                        <a
+                            className="block"
+                            href="#About page"
+                            onClick={() => setMobileMenuVisible(false)}
+                        >
+                            About
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            className="block"
+                            href="#Discover page"
+                            onClick={() => setMobileMenuVisible(false)}
+                        >
+                            Discover
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            className="block"
+                            href="#Get Started page"
+                            onClick={() => setMobileMenuVisible(false)}
+                        >
+                            Get Started
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </Overlay>
     );
 };
