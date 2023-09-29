@@ -1,17 +1,17 @@
-import hamburger from '../src/assets/images/icon-hamburger.svg';
-import masterCraft from '../src/assets/images/logo-mastercraft.svg';
-
 import { useMobileMenu } from './contexts/MobileMenuContext';
 
 import Logo from './components/UI/Logo';
 import Bookmark from './components/UI/Bookmark';
+import MastercraftLogo from './components/UI/MastercraftLogo';
 import ProgressBar from './components/UI/ProgressBar';
 import MobileMenuOverlay from './components/UI/MobileMenuOverlay';
 import ProjectOption from './components/ProjectOption';
 import PrimaryBtn from './components/UI/PrimaryBtn';
+import HamburgerMenu from './components/UI/HamburgerMenu';
+import AboutProjectDescription from './components/AboutProjectDescription';
 
 const App = () => {
-    const { mobileMenuVisible, setMobileMenuVisible } = useMobileMenu();
+    const { mobileMenuVisible } = useMobileMenu();
 
     return (
         <>
@@ -22,23 +22,13 @@ const App = () => {
                     <header className="flex justify-between">
                         <Logo />
                         <nav className="relative">
-                            {!mobileMenuVisible && (
-                                <button
-                                    onClick={() => setMobileMenuVisible(true)}
-                                >
-                                    <img src={hamburger} alt="Menu toggle" />
-                                </button>
-                            )}
+                            {!mobileMenuVisible && <HamburgerMenu />}
                         </nav>
                     </header>
 
                     <main className="flex flex-col gap-7 mt-[11.65rem]">
                         <section className="relative flex flex-col justify-center items-center bg-white rounded-lg px-6 border border-solid border-neutral-dark-gray/10">
-                            <img
-                                src={masterCraft}
-                                alt="Master craft logo"
-                                className="absolute top-[-1.75rem] right-[50%] translate-x-[50%]"
-                            />
+                            <MastercraftLogo />
                             <div className="flex flex-col gap-6 pt-16 pb-10 text-center">
                                 <h1 className="text-[1.4rem] leading-7 font-bold">
                                     Mastercraft Bamboo Monitor Riser
@@ -83,25 +73,7 @@ const App = () => {
                         </section>
 
                         <section className="flex flex-col gap-7 bg-white rounded-lg px-6 py-8 border border-solid border-neutral-dark-gray/10 text-neutral-dark-gray text-left">
-                            <h2 className="text-xl text-neutral-black font-bold">
-                                About this project
-                            </h2>
-                            <p>
-                                The Mastercraft Bamboo Monitor Riser is a sturdy
-                                and stylish platform that elevates your screen
-                                to a more comfortable viewing height. Placing
-                                your monitor at eye level has the potential to
-                                improve your posture and make you more
-                                comfortable while at work, helping you stay
-                                focused on the task at hand.
-                            </p>
-                            <p>
-                                Featuring artisan craftsmanship, the simplicity
-                                of design creates extra desk space below your
-                                computer to allow notepads, pens, and USB sticks
-                                to be stored under the stand.
-                            </p>
-
+                            <AboutProjectDescription />
                             <div className="flex flex-col gap-5">
                                 <ProjectOption
                                     name={'Bamboo Stand'}
