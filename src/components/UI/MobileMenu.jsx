@@ -1,13 +1,23 @@
+import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 import { useMobileMenu } from '../../contexts/MobileMenuContext';
-import closeMenu from '../../assets/images/icon-close-menu.svg';
 
+import closeMenu from '../../assets/images/icon-close-menu.svg';
 import Overlay from './Overlay';
 import Logo from './Logo';
 
 const MobileMenu = () => {
     const { setMobileMenuVisible } = useMobileMenu();
+
+    useEffect(() => {
+        const html = document.querySelector('html');
+        html.style.overflow = 'hidden';
+
+        return () => {
+            html.style = null;
+        };
+    }, []);
 
     return (
         <Overlay>
