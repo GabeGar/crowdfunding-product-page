@@ -1,5 +1,6 @@
 import { useProjectSelection } from '../contexts/ProjectSelectionContext';
 import PrimaryBtn from './UI/PrimaryBtn';
+import RadioBtn from './UI/RadioBtn';
 
 const ProjectOption = ({
     id,
@@ -14,12 +15,16 @@ const ProjectOption = ({
 
     const isChecked = selectedID === id;
     const outOfStock = remaining === 0 ? true : false;
+    const currentMenuSelection =
+        selectionMenuIsVisible && isChecked && showRadio && !outOfStock;
     const isBasicPledge = selectionMenuIsVisible && !price && !remaining;
 
     return (
         <section
             className={`flex flex-col gap-5 bg-white rounded-lg p-5 border border-solid ${
-                !outOfStock
+                currentMenuSelection
+                    ? `border-primary-moderate-cyan border-2`
+                    : !outOfStock
                     ? `border-neutral-dark-gray/30`
                     : `border-neutral-dark-gray/10`
             }`}
@@ -30,15 +35,7 @@ const ProjectOption = ({
         >
             <div className="flex gap-4">
                 {showRadio && (
-                    <input
-                        className="w-[10%]"
-                        type="radio"
-                        id={id}
-                        name="projectOption"
-                        onChange={() => setSelectedID(id)}
-                        checked={isChecked}
-                        disabled={outOfStock ?? false}
-                    />
+                    <RadioBtn currentMenuSelection={currentMenuSelection} />
                 )}
                 <h3
                     className={`flex flex-col gap-1 ${
