@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useProjectSelection } from '../contexts/ProjectSelectionContext';
 import PrimaryBtn from './UI/PrimaryBtn';
+import SecondaryBtn from './UI/SecondaryBtn';
 import RadioBtn from './UI/RadioBtn';
+import PledgeForm from './PledgeForm';
 
 const ProjectOption = ({
     id,
@@ -85,38 +87,21 @@ const ProjectOption = ({
             {currentMenuSelection && (
                 <div className="flex flex-col items-center pt-6 gap-5 border-t-2">
                     {!isBasicPledge && <p>Enter your pledge</p>}
-                    <div className="relative flex gap-2 justify-between">
+                    <div className="relative">
                         {!isBasicPledge && (
-                            <>
-                                <form
-                                    action=""
-                                    onChange={(e) => e.preventDefault()}
-                                >
-                                    <label
-                                        className="flex items-center absolute h-full ml-4 text-neutral-dark-gray/50 font-bold"
-                                        htmlFor="pledge"
-                                    >
-                                        $
-                                    </label>
-                                    <input
-                                        className="text-neutral-black font-bold text-center border w-full min-h-full rounded-full outline-primary-moderate-cyan px-6"
-                                        type="number"
-                                        id="pledge"
-                                        min={price}
-                                        max={999}
-                                        value={
-                                            currentPledge
-                                                ? currentPledge
-                                                : price
-                                        }
-                                        onChange={(e) =>
-                                            setCurrentPledge(e.target.value)
-                                        }
-                                    />
-                                </form>
-                            </>
+                            <PledgeForm
+                                price={price}
+                                currentPledge={currentPledge}
+                                setCurrentPledge={setCurrentPledge}
+                            />
                         )}
-                        <PrimaryBtn>Continue</PrimaryBtn>
+                        {isBasicPledge && (
+                            <SecondaryBtn
+                                classes={`px-8 py-3 rounded-[2rem] text-white font-bold self-start bg-primary-moderate-cyan`}
+                            >
+                                Continue
+                            </SecondaryBtn>
+                        )}
                     </div>
                 </div>
             )}
