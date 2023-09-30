@@ -1,7 +1,7 @@
 import { useMobileMenu } from './contexts/MobileMenuContext';
 import { useProjectSelection } from './contexts/ProjectSelectionContext';
 import { usePledge } from './contexts/PledgeContext';
-import { beautifyNumber } from './utilities/beautifyNumber';
+import { insertCommasInNumber } from './utilities/insertCommasInNumber';
 
 import Logo from './components/UI/Logo';
 import Bookmark from './components/UI/Bookmark';
@@ -20,7 +20,8 @@ const App = () => {
     const { projectProgress } = usePledge();
     const { totalBackers, totalRaised, goal } = projectProgress;
 
-    const totalRaisedStr = beautifyNumber(totalRaised);
+    const totalRaisedStr = insertCommasInNumber(totalRaised);
+    const totalBackersStr = insertCommasInNumber(totalBackers);
 
     return (
         <>
@@ -66,7 +67,7 @@ const App = () => {
                             <hr className="max-w-[6rem] w-[35%] self-center" />
                             <article className="flex flex-col gap-3 py-6">
                                 <h2 className="text-4xl font-bold">
-                                    {totalBackers}
+                                    {totalBackersStr}
                                 </h2>
                                 <p className="text-neutral-dark-gray">
                                     total backers
