@@ -10,14 +10,11 @@ import ProjectOption from './ProjectOption';
 import SecondaryBtn from './UI/SecondaryBtn';
 
 const ProjectSelectionModal = () => {
-    const { setSelectedID, selectionMenuIsVisible, setSelectionMenuIsVisible } =
-        useProjectSelection();
-
-    const showRadio = selectionMenuIsVisible ?? false;
+    const { setSelectedID, setSelectionMenuIsVisible } = useProjectSelection();
 
     const handleExitModal = () => {
         setSelectionMenuIsVisible(false);
-        setSelectedID(null);
+        setSelectedID(0);
     };
 
     useEffect(() => {
@@ -53,7 +50,7 @@ const ProjectSelectionModal = () => {
                             price={item.price}
                             description={item.description}
                             remaining={item.remaining}
-                            showRadio={showRadio}
+                            showRadio={true}
                         />
                     );
                 })}
