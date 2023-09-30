@@ -13,10 +13,14 @@ import PrimaryBtn from './components/UI/PrimaryBtn';
 import HamburgerMenu from './components/UI/HamburgerMenu';
 import AboutProjectDescription from './components/AboutProjectDescription';
 import ProjectSelectionOverlay from './components/ProjectSelectionModal';
+import { usePledge } from './contexts/PledgeContext';
 
 const App = () => {
     const { mobileMenuVisible } = useMobileMenu();
     const { selectionMenuIsVisible } = useProjectSelection();
+    const { projectProgress } = usePledge();
+
+    const { totalBackers, totalRaised } = projectProgress;
 
     return (
         <>
@@ -52,14 +56,18 @@ const App = () => {
 
                         <section className="flex flex-col items-center bg-white rounded-lg px-6 py-10 border border-solid border-neutral-dark-gray/10 text-center">
                             <article className="relative flex flex-col gap-3 pb-6">
-                                <h2 className="text-4xl font-bold">$89,914</h2>
+                                <h2 className="text-4xl font-bold">
+                                    ${totalRaised}
+                                </h2>
                                 <p className="text-neutral-dark-gray">
                                     of $100,000 backed
                                 </p>
                             </article>
                             <hr className="max-w-[6rem] w-[35%] self-center" />
                             <article className="flex flex-col gap-3 py-6">
-                                <h2 className="text-4xl font-bold">5,007</h2>
+                                <h2 className="text-4xl font-bold">
+                                    {totalBackers}
+                                </h2>
                                 <p className="text-neutral-dark-gray">
                                     total backers
                                 </p>
@@ -73,8 +81,7 @@ const App = () => {
                             </article>
 
                             <div className="w-full flex justify-center">
-                                {/* Temp value */}
-                                <ProgressBar currentValue={75} />
+                                <ProgressBar />
                             </div>
                         </section>
 

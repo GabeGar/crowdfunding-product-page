@@ -18,13 +18,26 @@ const ProjectOption = ({
     const [currentAmount, setCurrentAmount] = useState(price);
     const { selectedID, setSelectedID, selectionMenuIsVisible } =
         useProjectSelection();
-    const { setPledgeSuccessful } = usePledge();
+    const { setProjectProgress, setPledgeSuccessful } = usePledge();
 
     const isChecked = selectedID === id;
     const outOfStock = remaining === 0 ? true : false;
     const currentMenuSelection =
         selectionMenuIsVisible && isChecked && showRadio && !outOfStock;
     const isBasicPledge = selectionMenuIsVisible && !price && !remaining;
+
+    const handlePledgeSubmission = () => {
+        setProjectProgress((currentProgress) => {
+            const { totalBackers } = currentProgress;
+
+            return {
+                ...currentProgress,
+                totalBackers: totalBackers + 1,
+            };
+        });
+
+        setPledgeSuccessful(true);
+    };
 
     return (
         <section
@@ -101,9 +114,7 @@ const ProjectOption = ({
                         {isBasicPledge && (
                             <SecondaryBtn
                                 classes={`px-8 py-3 rounded-[2rem] text-white font-bold self-start bg-primary-moderate-cyan`}
-                                onClick={() => {
-                                    setPledgeSuccessful(true);
-                                }}
+                                onClick={handlePledgeSubmission}
                             >
                                 Continue
                             </SecondaryBtn>

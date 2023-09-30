@@ -4,16 +4,31 @@ import SecondaryBtn from './UI/SecondaryBtn';
 const MAX_AMOUNT = 9999;
 
 const PledgeForm = ({ price, currentAmount, setCurrentAmount }) => {
-    const { setPledgeSuccessful } = usePledge();
+    const { setProjectProgress, setPledgeSuccessful } = usePledge();
+
+    const handlePledgeSubmissionForm = (e) => {
+        e.preventDefault();
+
+        if (!currentAmount) return;
+
+        setProjectProgress((currentProgress) => {
+            const { totalBackers, totalRaised } = currentProgress;
+
+            return {
+                ...currentProgress,
+                totalBackers: totalBackers + 1,
+                totalRaised: totalRaised + currentAmount,
+            };
+        });
+
+        setPledgeSuccessful(true);
+    };
 
     return (
         <form
             className="flex gap-2"
             action=""
-            onSubmit={(e) => {
-                e.preventDefault();
-                setPledgeSuccessful(true);
-            }}
+            onSubmit={handlePledgeSubmissionForm}
         >
             <label
                 className="flex items-center absolute h-full ml-4 text-neutral-dark-gray/50 font-bold"
@@ -27,7 +42,7 @@ const PledgeForm = ({ price, currentAmount, setCurrentAmount }) => {
                 id="pledge"
                 min={price}
                 max={MAX_AMOUNT}
-                value={currentAmount ? currentAmount : price}
+                value={currentAmount ? currentAmount : ''}
                 onChange={(e) => setCurrentAmount(Number(e.target.value))}
             />
             <SecondaryBtn
