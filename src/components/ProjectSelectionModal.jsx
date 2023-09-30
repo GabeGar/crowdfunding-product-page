@@ -5,11 +5,9 @@ import { usePledge } from '../contexts/PledgeContext';
 
 import closeModal from '../assets/images/icon-close-modal.svg';
 import Overlay from './UI/Overlay';
-import ProjectOption from './ProjectOption';
 import SecondaryBtn from './UI/SecondaryBtn';
 import PledgeConfirmation from './PledgeConfirmation';
-
-import data from '../data/data.json';
+import ProjectOptionsList from './ProjectOptionsList';
 
 const ProjectSelectionModal = () => {
     const { pledgeSuccessful } = usePledge();
@@ -49,19 +47,7 @@ const ProjectSelectionModal = () => {
                             Want to support us in bringing Mastercraft Bamboo
                             Monitor Riser out in the world?
                         </p>
-                        {data.map((item) => {
-                            return (
-                                <ProjectOption
-                                    key={item.id}
-                                    id={item.id}
-                                    name={item.name}
-                                    price={item.price}
-                                    description={item.description}
-                                    remaining={item.remaining}
-                                    showRadio={true}
-                                />
-                            );
-                        })}
+                        <ProjectOptionsList showRadio={true} />
                     </>
                 )}
                 {pledgeSuccessful && <PledgeConfirmation />}
