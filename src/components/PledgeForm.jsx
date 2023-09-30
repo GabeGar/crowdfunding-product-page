@@ -1,12 +1,18 @@
-import PrimaryBtn from './UI/PrimaryBtn';
+import { usePledge } from '../contexts/PledgeContext';
+import SecondaryBtn from './UI/SecondaryBtn';
 
-const PledgeForm = ({ currentPledge, setCurrentPledge, price }) => {
+const MAX_AMOUNT = 9999;
+
+const PledgeForm = ({ price, currentAmount, setCurrentAmount }) => {
+    const { setPledgeSuccessful } = usePledge();
+
     return (
         <form
             className="flex gap-2"
             action=""
             onSubmit={(e) => {
                 e.preventDefault();
+                setPledgeSuccessful(true);
             }}
         >
             <label
@@ -20,11 +26,15 @@ const PledgeForm = ({ currentPledge, setCurrentPledge, price }) => {
                 type="number"
                 id="pledge"
                 min={price}
-                max={999}
-                value={currentPledge ? currentPledge : price}
-                onChange={(e) => setCurrentPledge(e.target.value)}
+                max={MAX_AMOUNT}
+                value={currentAmount ? currentAmount : price}
+                onChange={(e) => setCurrentAmount(Number(e.target.value))}
             />
-            <PrimaryBtn>Continue</PrimaryBtn>
+            <SecondaryBtn
+                classes={`px-8 py-3 rounded-[2rem] text-white font-bold bg-primary-moderate-cyan`}
+            >
+                Continue
+            </SecondaryBtn>
         </form>
     );
 };

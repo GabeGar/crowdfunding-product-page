@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { usePledge } from '../contexts/PledgeContext';
 import { useProjectSelection } from '../contexts/ProjectSelectionContext';
+
 import PrimaryBtn from './UI/PrimaryBtn';
 import SecondaryBtn from './UI/SecondaryBtn';
 import RadioBtn from './UI/RadioBtn';
@@ -13,9 +15,10 @@ const ProjectOption = ({
     remaining,
     showRadio,
 }) => {
-    const [currentPledge, setCurrentPledge] = useState(price);
+    const [currentAmount, setCurrentAmount] = useState(price);
     const { selectedID, setSelectedID, selectionMenuIsVisible } =
         useProjectSelection();
+    const { setPledgeSuccessful } = usePledge();
 
     const isChecked = selectedID === id;
     const outOfStock = remaining === 0 ? true : false;
@@ -91,13 +94,16 @@ const ProjectOption = ({
                         {!isBasicPledge && (
                             <PledgeForm
                                 price={price}
-                                currentPledge={currentPledge}
-                                setCurrentPledge={setCurrentPledge}
+                                currentAmount={currentAmount}
+                                setCurrentAmount={setCurrentAmount}
                             />
                         )}
                         {isBasicPledge && (
                             <SecondaryBtn
                                 classes={`px-8 py-3 rounded-[2rem] text-white font-bold self-start bg-primary-moderate-cyan`}
+                                onClick={() => {
+                                    setPledgeSuccessful(true);
+                                }}
                             >
                                 Continue
                             </SecondaryBtn>
