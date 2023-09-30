@@ -1,26 +1,26 @@
 import { useMobileMenu } from './contexts/MobileMenuContext';
 import { useProjectSelection } from './contexts/ProjectSelectionContext';
-
-import data from '../src/data/data.json';
+import { usePledge } from './contexts/PledgeContext';
+import { beautifyNumber } from './utilities/beautifyNumber';
 
 import Logo from './components/UI/Logo';
 import Bookmark from './components/UI/Bookmark';
 import MastercraftLogo from './components/UI/MastercraftLogo';
 import ProgressBar from './components/UI/ProgressBar';
 import MobileMenuOverlay from './components/UI/MobileMenuOverlay';
-import ProjectOption from './components/ProjectOption';
 import PrimaryBtn from './components/UI/PrimaryBtn';
 import HamburgerMenu from './components/UI/HamburgerMenu';
 import AboutProjectDescription from './components/AboutProjectDescription';
 import ProjectSelectionOverlay from './components/ProjectSelectionModal';
-import { usePledge } from './contexts/PledgeContext';
+import ProjectOptionsList from './components/ProjectOptionsList';
 
 const App = () => {
     const { mobileMenuVisible } = useMobileMenu();
     const { selectionMenuIsVisible } = useProjectSelection();
     const { projectProgress } = usePledge();
+    const { totalBackers, totalRaised, goal } = projectProgress;
 
-    const { totalBackers, totalRaised } = projectProgress;
+    const totalRaisedStr = beautifyNumber(totalRaised);
 
     return (
         <>
@@ -57,7 +57,7 @@ const App = () => {
                         <section className="flex flex-col items-center bg-white rounded-lg px-6 py-10 border border-solid border-neutral-dark-gray/10 text-center">
                             <article className="relative flex flex-col gap-3 pb-6">
                                 <h2 className="text-4xl font-bold">
-                                    ${totalRaised}
+                                    ${totalRaisedStr}
                                 </h2>
                                 <p className="text-neutral-dark-gray">
                                     of $100,000 backed
@@ -74,10 +74,22 @@ const App = () => {
                             </article>
                             <hr className="max-w-[6rem] w-[35%] self-center" />
                             <article className="flex flex-col gap-3 py-6">
-                                <h2 className="text-4xl font-bold">56</h2>
-                                <p className="text-neutral-dark-gray">
-                                    days left
-                                </p>
+                                {totalRaised < goal && (
+                                    <>
+                                        <h2 className="text-4xl font-bold">
+                                            56
+                                        </h2>
+                                        <p className="text-neutral-dark-gray">
+                                            days left
+                                        </p>
+                                    </>
+                                )}
+                                {totalRaised >= goal && (
+                                    <p className="flex flex-col gap-3 text-4xl font-bold text-neutral-black">
+                                        <span>Goal Reached.</span>
+                                        <span>Thank you all!</span>
+                                    </p>
+                                )}
                             </article>
 
                             <div className="w-full flex justify-center">
@@ -88,21 +100,7 @@ const App = () => {
                         <section className="flex flex-col gap-7 bg-white rounded-lg px-6 py-8 border border-solid border-neutral-dark-gray/10 text-neutral-dark-gray text-left">
                             <AboutProjectDescription />
                             <div className="flex flex-col gap-5">
-                                {data
-                                    .filter((el) => el.id !== 0)
-                                    .map((item) => {
-                                        return (
-                                            <ProjectOption
-                                                key={item.id}
-                                                id={item.id}
-                                                name={item.name}
-                                                price={item.price}
-                                                description={item.description}
-                                                remaining={item.remaining}
-                                                showRadio={false}
-                                            />
-                                        );
-                                    })}
+                                <ProjectOptionsList filterById={0} />
                             </div>
                         </section>
                     </main>
