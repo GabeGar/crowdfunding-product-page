@@ -4,7 +4,7 @@ import Checkmark from './UI/Checkmark.jsx';
 import SecondaryBtn from './UI/SecondaryBtn.jsx';
 
 const PledgeConfirmation = () => {
-    const { setSelectionMenuIsVisible } = useProjectSelection();
+    const { setSelectionMenuIsVisible, setSelectedID } = useProjectSelection();
     const { setPledgeSuccessful } = usePledge();
 
     return (
@@ -21,6 +21,7 @@ const PledgeConfirmation = () => {
             <SecondaryBtn
                 classes={`px-8 py-3 rounded-[2rem] text-white font-bold bg-primary-moderate-cyan`}
                 onClick={() => {
+                    setSelectedID(null);
                     setSelectionMenuIsVisible(false);
                     setPledgeSuccessful(false);
                 }}
