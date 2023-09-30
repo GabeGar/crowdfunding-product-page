@@ -9,7 +9,7 @@ const ProjectSelectionContext = createContext({
 
 const ProjectSelectionContextProvider = ({ children }) => {
     const [selectionMenuIsVisible, setSelectionMenuIsVisible] = useState(false);
-    const [selectedID, setSelectedID] = useState(0);
+    const [selectedID, setSelectedID] = useState(null);
 
     return (
         <ProjectSelectionContext.Provider

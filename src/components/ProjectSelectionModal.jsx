@@ -17,7 +17,7 @@ const ProjectSelectionModal = () => {
 
     const handleExitModal = () => {
         setSelectionMenuIsVisible(false);
-        setSelectedID(0);
+        setSelectedID(null);
     };
 
     useEffect(() => {

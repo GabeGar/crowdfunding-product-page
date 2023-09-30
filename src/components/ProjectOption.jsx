@@ -49,7 +49,7 @@ const ProjectOption = ({
                     : `border-neutral-dark-gray/10`
             }`}
             onClick={() => {
-                if (outOfStock) return;
+                if (outOfStock || !selectionMenuIsVisible) return;
                 setSelectedID(id);
             }}
         >
@@ -88,7 +88,9 @@ const ProjectOption = ({
                             !outOfStock
                                 ? `text-neutral-black`
                                 : `text-neutral-black/50`
-                        } text-4xl font-bold `}
+                        } ${
+                            selectionMenuIsVisible ? `text-2xl` : `text-4xl`
+                        } font-bold `}
                     >
                         {remaining}
                     </span>
