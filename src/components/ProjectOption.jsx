@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useProjectSelection } from '../contexts/ProjectSelectionContext';
 import PrimaryBtn from './UI/PrimaryBtn';
 import RadioBtn from './UI/RadioBtn';
@@ -10,6 +11,7 @@ const ProjectOption = ({
     remaining,
     showRadio,
 }) => {
+    const [currentPledge, setCurrentPledge] = useState(price);
     const { selectedID, setSelectedID, selectionMenuIsVisible } =
         useProjectSelection();
 
@@ -79,6 +81,44 @@ const ProjectOption = ({
                 <PrimaryBtn isDisabled={outOfStock}>
                     {!outOfStock ? `Select Reward` : `Out of Stock`}
                 </PrimaryBtn>
+            )}
+            {currentMenuSelection && (
+                <div className="flex flex-col items-center pt-6 gap-5 border-t-2">
+                    {!isBasicPledge && <p>Enter your pledge</p>}
+                    <div className="relative flex gap-2 justify-between">
+                        {!isBasicPledge && (
+                            <>
+                                <form
+                                    action=""
+                                    onChange={(e) => e.preventDefault()}
+                                >
+                                    <label
+                                        className="flex items-center absolute h-full ml-4 text-neutral-dark-gray/50 font-bold"
+                                        htmlFor="pledge"
+                                    >
+                                        $
+                                    </label>
+                                    <input
+                                        className="text-neutral-black font-bold text-center border w-full min-h-full rounded-full outline-primary-moderate-cyan px-6"
+                                        type="number"
+                                        id="pledge"
+                                        min={price}
+                                        max={999}
+                                        value={
+                                            currentPledge
+                                                ? currentPledge
+                                                : price
+                                        }
+                                        onChange={(e) =>
+                                            setCurrentPledge(e.target.value)
+                                        }
+                                    />
+                                </form>
+                            </>
+                        )}
+                        <PrimaryBtn>Continue</PrimaryBtn>
+                    </div>
+                </div>
             )}
         </section>
     );
