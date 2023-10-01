@@ -1,14 +1,18 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-
 import { useMobileMenu } from '../../contexts/MobileMenuContext';
 
 import closeMenu from '../../assets/images/icon-close-menu.svg';
 import Overlay from './Overlay';
 import Logo from './Logo';
+import NavLink from './NavLink';
 
 const MobileMenu = () => {
     const { setMobileMenuVisible } = useMobileMenu();
+
+    const handleExitMobileMenu = () => {
+        setMobileMenuVisible(false);
+    };
 
     useEffect(() => {
         const html = document.querySelector('html');
@@ -23,38 +27,38 @@ const MobileMenu = () => {
         <Overlay>
             <div className="flex justify-between">
                 <Logo />
-                <button onClick={() => setMobileMenuVisible(false)}>
+                <button onClick={handleExitMobileMenu}>
                     <img src={closeMenu} alt="Exit menu" />
                 </button>
             </div>
             <nav>
                 <ul className="grid grid-rows-3 my-[5rem] rounded-lg bg-white font-medium all-child:p-6 not-last-child:border-b-2">
                     <li>
-                        <a
-                            className="block"
-                            href="#About page"
-                            onClick={() => setMobileMenuVisible(false)}
+                        <NavLink
+                            classes={'block'}
+                            href={'About Page'}
+                            onClick={handleExitMobileMenu}
                         >
                             About
-                        </a>
+                        </NavLink>
                     </li>
                     <li>
-                        <a
-                            className="block"
-                            href="#Discover page"
-                            onClick={() => setMobileMenuVisible(false)}
+                        <NavLink
+                            classes={'block'}
+                            href={'Discover page'}
+                            onClick={handleExitMobileMenu}
                         >
                             Discover
-                        </a>
+                        </NavLink>
                     </li>
                     <li>
-                        <a
-                            className="block"
-                            href="#Get Started page"
-                            onClick={() => setMobileMenuVisible(false)}
+                        <NavLink
+                            classes={'block'}
+                            href={'Get Started page'}
+                            onClick={handleExitMobileMenu}
                         >
                             Get Started
-                        </a>
+                        </NavLink>
                     </li>
                 </ul>
             </nav>
