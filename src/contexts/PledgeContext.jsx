@@ -1,4 +1,7 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useReducer, useState } from 'react';
+import projectProgressReducer, {
+    initProjectProgressState,
+} from '../reducers/projectProgressReducer';
 
 const PledgeContext = createContext({
     pledgeSuccessful: false,
@@ -8,18 +11,14 @@ const PledgeContext = createContext({
         totalRaised: 89914,
         goal: 100000,
     },
-    setProjectProgress: () => {},
+    dispatch: () => {},
 });
 
-const initialProgressState = {
-    totalBackers: 5007,
-    totalRaised: 89914,
-    goal: 100000,
-};
-
 const PledgeContextProvider = ({ children }) => {
-    const [projectProgress, setProjectProgress] =
-        useState(initialProgressState);
+    const [projectProgress, dispatch] = useReducer(
+        projectProgressReducer,
+        initProjectProgressState,
+    );
     const [pledgeSuccessful, setPledgeSuccessful] = useState(false);
 
     return (
@@ -28,7 +27,7 @@ const PledgeContextProvider = ({ children }) => {
                 pledgeSuccessful,
                 setPledgeSuccessful,
                 projectProgress,
-                setProjectProgress,
+                dispatch,
             }}
         >
             {children}

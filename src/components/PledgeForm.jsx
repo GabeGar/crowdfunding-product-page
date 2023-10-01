@@ -4,21 +4,16 @@ import SecondaryBtn from './UI/SecondaryBtn';
 const MAX_AMOUNT = 9999;
 
 const PledgeForm = ({ price, currentAmount, setCurrentAmount }) => {
-    const { setProjectProgress, setPledgeSuccessful } = usePledge();
+    const { dispatch, setPledgeSuccessful } = usePledge();
 
     const handlePledgeSubmissionForm = (e) => {
         e.preventDefault();
 
         if (!currentAmount) return;
 
-        setProjectProgress((currentProgress) => {
-            const { totalBackers, totalRaised } = currentProgress;
-
-            return {
-                ...currentProgress,
-                totalBackers: totalBackers + 1,
-                totalRaised: totalRaised + currentAmount,
-            };
+        dispatch({
+            type: 'project/reward',
+            payload: currentAmount,
         });
 
         setPledgeSuccessful(true);

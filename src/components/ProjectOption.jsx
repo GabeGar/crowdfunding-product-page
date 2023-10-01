@@ -18,7 +18,7 @@ const ProjectOption = ({
     const [currentAmount, setCurrentAmount] = useState(price);
     const { selectedID, setSelectedID, selectionMenuIsVisible } =
         useProjectSelection();
-    const { setProjectProgress, setPledgeSuccessful } = usePledge();
+    const { dispatch, setPledgeSuccessful } = usePledge();
 
     const isChecked = selectedID === id;
     const outOfStock = remaining === 0 ? true : false;
@@ -27,13 +27,8 @@ const ProjectOption = ({
     const isBasicPledge = selectionMenuIsVisible && !price && !remaining;
 
     const handlePledgeSubmission = () => {
-        setProjectProgress((currentProgress) => {
-            const { totalBackers } = currentProgress;
-
-            return {
-                ...currentProgress,
-                totalBackers: totalBackers + 1,
-            };
+        dispatch({
+            type: 'project/no-reward',
         });
 
         setPledgeSuccessful(true);
