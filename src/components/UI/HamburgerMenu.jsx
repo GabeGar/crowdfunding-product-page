@@ -11,7 +11,10 @@ const HamburgerMenu = () => {
     };
 
     return (
-        <SecondaryBtn onClick={handleMobileMenuVisibility}>
+        <SecondaryBtn
+            classes={'sm:hidden'}
+            onClick={handleMobileMenuVisibility}
+        >
             <img src={hamburger} alt="Menu toggle" />
         </SecondaryBtn>
     );

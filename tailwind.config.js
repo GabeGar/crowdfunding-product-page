@@ -11,10 +11,14 @@ export default {
                 'neutral-dark-gray': 'hsl(var(--dark-gray) / <alpha-value>)',
             },
             backgroundImage: {
-                'bg-hero-desktop':
+                'hero-desktop':
                     "url('/src/assets/images/image-hero-desktop.jpg')",
-                'bg-hero-mobile':
+                'hero-mobile':
                     "url('/src/assets/images/image-hero-mobile.jpg')",
+            },
+            screens: {
+                xsm: { max: '300px' },
+                msm: { max: '639px' },
             },
         },
     },
