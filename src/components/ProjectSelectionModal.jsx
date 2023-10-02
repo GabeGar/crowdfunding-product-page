@@ -3,11 +3,11 @@ import { createPortal } from 'react-dom';
 import { useProjectSelection } from '../contexts/ProjectSelectionContext';
 import { usePledge } from '../contexts/PledgeContext';
 
-import closeModal from '../assets/images/icon-close-modal.svg';
 import Overlay from './UI/Overlay';
 import SecondaryBtn from './UI/SecondaryBtn';
 import PledgeConfirmation from './PledgeConfirmation';
 import ProjectOptionsList from './ProjectOptionsList';
+import CloseModal from './UI/CloseModal';
 
 const ProjectSelectionModal = () => {
     const { pledgeSuccessful } = usePledge();
@@ -29,21 +29,22 @@ const ProjectSelectionModal = () => {
 
     return (
         <Overlay>
-            <div className="sm:max-w-[45rem] mx-auto sm:p-8 flex flex-col gap-4 my-[5.5rem] bg-white rounded-lg p-6 text-neutral-dark-gray">
+            <div
+                className={`${
+                    pledgeSuccessful ? `sm:max-w-[32rem]` : `sm:max-w-[45rem]`
+                } mx-auto sm:p-8 flex flex-col gap-4 mt-[5.5rem] bg-white rounded-lg p-6 text-neutral-dark-gray`}
+            >
                 {!pledgeSuccessful && (
                     <>
                         <div className="flex justify-between">
-                            <h2 className=" text-lg text-neutral-black font-bold">
+                            <h2 className="text-lg text-neutral-black font-bold">
                                 Back This Project
                             </h2>
                             <SecondaryBtn
-                                classes={'group'}
+                                classes="group"
                                 onClick={handleExitModal}
                             >
-                                <img
-                                    src={closeModal}
-                                    alt="exit selection menu"
-                                />
+                                <CloseModal pathClasses="transition group-hover:opacity-100" />
                             </SecondaryBtn>
                         </div>
                         <p>

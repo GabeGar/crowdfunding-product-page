@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 const MobileMenuContext = createContext({
     mobileMenuVisible: false,
@@ -7,6 +7,18 @@ const MobileMenuContext = createContext({
 
 const MobileMenuProvider = ({ children }) => {
     const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 640) {
+                setMobileMenuVisible(false);
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     return (
         <MobileMenuContext.Provider

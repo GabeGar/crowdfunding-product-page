@@ -34,18 +34,18 @@ const MainContent = () => {
                     </div>
                 </div>
             </section>
-            <section className="sm:child:p-0 sm:flex-row sm:flex-wrap sm:justify-between sm:items-start sm:gap-6 sm:not-last-child:flex-1 sm:not-last-child:items-stretch sm:is-article:gap-1 sm:is-article:text-left flex flex-col items-center bg-white rounded-lg px-6 py-10 border border-solid border-neutral-dark-gray/10 text-center">
+            <section className="sm:child:p-0 sm:flex-row sm:flex-wrap sm:justify-between sm:items-start sm:gap-6 sm:not-last-child:flex-1 sm:not-last-child:items-stretch sm:is-article:gap-1  sm:is-article:text-left flex flex-col items-center bg-white rounded-lg px-6 py-10 border border-solid border-neutral-dark-gray/10 text-center">
                 <article className="relative flex flex-col gap-3 pb-6">
                     <h2 className="text-4xl font-bold">${totalRaisedStr}</h2>
                     <p className="text-neutral-dark-gray">of $100,000 backed</p>
                 </article>
                 <ThematicDivider />
-                <article className="flex flex-col gap-3 py-6">
+                <article className="relative flex flex-col gap-3 pb-6">
                     <h2 className="text-4xl font-bold">{totalBackersStr}</h2>
                     <p className="text-neutral-dark-gray">total backers</p>
                 </article>
                 <ThematicDivider />
-                <article className="flex flex-col gap-3 py-6">
+                <article className="relative flex flex-col gap-3 pb-6">
                     {totalRaised < goal && (
                         <>
                             <h2 className="text-4xl font-bold">56</h2>
@@ -53,7 +53,7 @@ const MainContent = () => {
                         </>
                     )}
                     {totalRaised >= goal && (
-                        <p className="flex flex-col gap-3 text-4xl font-bold text-neutral-black">
+                        <p className="flex flex-col gap-3 text-4xl font-bold sm:text-center text-neutral-black">
                             <span>Goal Reached!</span>
                         </p>
                     )}

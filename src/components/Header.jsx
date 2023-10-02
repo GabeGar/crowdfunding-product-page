@@ -14,13 +14,28 @@ const Header = () => {
                 {!mobileMenuVisible && <HamburgerMenu />}
                 <ul className="flex gap-10 msm:hidden text-white font-medium">
                     <li>
-                        <NavLink href={'About page'}>About</NavLink>
+                        <NavLink
+                            classes={'transition-all hover:font-bold'}
+                            href={'About page'}
+                        >
+                            About
+                        </NavLink>
                     </li>
                     <li>
-                        <NavLink href={'Discover Page'}>Discover</NavLink>
+                        <NavLink
+                            classes={'transition-all hover:font-bold'}
+                            href={'Discover Page'}
+                        >
+                            Discover
+                        </NavLink>
                     </li>
                     <li>
-                        <NavLink href={'Get Started Page'}>Get Started</NavLink>
+                        <NavLink
+                            classes={'transition-all hover:font-bold'}
+                            href={'Get Started Page'}
+                        >
+                            Get Started
+                        </NavLink>
                     </li>
                 </ul>
             </nav>

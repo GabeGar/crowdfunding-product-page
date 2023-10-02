@@ -19,7 +19,7 @@ const PledgeConfirmation = () => {
                 campaign is complete.
             </p>
             <SecondaryBtn
-                classes={`px-8 py-3 rounded-[2rem] text-white font-bold bg-primary-moderate-cyan`}
+                classes={`transition hover:bg-primary-dark-cyan px-8 py-3 rounded-[2rem] text-white font-bold bg-primary-moderate-cyan`}
                 onClick={() => {
                     setSelectedID(null);
                     setSelectionMenuIsVisible(false);

@@ -30,7 +30,9 @@ const ProjectOption = ({
     const isOnHomePageDesktop = !selectionMenuIsVisible && !isMobile;
     const isInModalMenuDesktop = selectionMenuIsVisible && !isMobile;
 
-    const handlePledgeSubmission = () => {
+    const handleBasicPledgeSubmission = () => {
+        if (selectedID !== 0) return;
+
         dispatch({
             type: 'project/no-reward',
         });
@@ -61,7 +63,7 @@ const ProjectOption = ({
                 )}
                 {(isInModalMenuDesktop || isOnHomePageDesktop) && (
                     <span
-                        className={`${
+                        className={`transition-colors ${
                             (selectionMenuIsVisible &&
                                 !outOfStock &&
                                 `group-hover:text-primary-moderate-cyan`) ||
@@ -82,7 +84,7 @@ const ProjectOption = ({
                 >
                     {isMobile && (
                         <span
-                            className={`${
+                            className={`transition-colors ${
                                 selectionMenuIsVisible &&
                                 !outOfStock &&
                                 `group-hover:text-primary-moderate-cyan`
@@ -124,11 +126,14 @@ const ProjectOption = ({
                 )}
             </div>
             {currentMenuSelection && (
-                <div className="flex flex-col items-center pt-6 gap-5 border-t-2">
+                <div
+                    className={`sm:flex-row sm:justify-between flex flex-col items-center pt-6 gap-5 border-t-2`}
+                >
                     {!isBasicPledge && <p>Enter your pledge</p>}
-                    <div className="relative">
+                    <div className="relative sm:w-full flex justify-end">
                         {!isBasicPledge && (
                             <PledgeForm
+                                isMobile={isMobile}
                                 price={price}
                                 currentAmount={currentAmount}
                                 setCurrentAmount={setCurrentAmount}
@@ -136,8 +141,8 @@ const ProjectOption = ({
                         )}
                         {isBasicPledge && (
                             <SecondaryBtn
-                                classes={`px-8 py-3 rounded-[2rem] text-white font-bold self-start bg-primary-moderate-cyan`}
-                                onClick={handlePledgeSubmission}
+                                classes={`transition hover:bg-primary-dark-cyan px-8 py-3 rounded-[2rem] text-white font-bold bg-primary-moderate-cyan`}
+                                onClick={handleBasicPledgeSubmission}
                             >
                                 Continue
                             </SecondaryBtn>
