@@ -1,7 +1,8 @@
+import { AnimatePresence } from 'framer-motion';
 import { useMobileMenu } from './contexts/MobileMenuContext';
 import { useProjectSelection } from './contexts/ProjectSelectionContext';
 
-import MobileMenuOverlay from './components/UI/MobileMenuOverlay';
+import MobileMenuOverlay from './components/MobileMenuOverlay';
 import ProjectSelectionOverlay from './components/ProjectSelectionModal';
 import Header from './components/Header';
 import MainContent from './components/MainContent';
@@ -12,8 +13,10 @@ const App = () => {
 
     return (
         <>
-            {mobileMenuVisible && <MobileMenuOverlay />}
-            {selectionMenuIsVisible && <ProjectSelectionOverlay />}
+            <AnimatePresence>
+                {mobileMenuVisible && <MobileMenuOverlay />}
+                {selectionMenuIsVisible && <ProjectSelectionOverlay />}
+            </AnimatePresence>
 
             <div className=" sm:bg-hero-desktop bg-neutral-dark-gray/5 bg-no-repeat bg-top bg-[100%,auto]">
                 <div className="min-h-screen mx-auto">

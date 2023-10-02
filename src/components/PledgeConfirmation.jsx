@@ -1,3 +1,4 @@
+import { motion as m } from 'framer-motion';
 import { usePledge } from '../contexts/PledgeContext.jsx';
 import { useProjectSelection } from '../contexts/ProjectSelectionContext.jsx';
 import Checkmark from './UI/Checkmark.jsx';
@@ -8,7 +9,13 @@ const PledgeConfirmation = () => {
     const { setPledgeSuccessful } = usePledge();
 
     return (
-        <div className="flex flex-col items-center py-3 gap-7 text-center">
+        <m.div
+            key={'confirmation'}
+            transition={{ duration: 0.2, ease: 'easeIn' }}
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex flex-col items-center py-3 gap-7 text-center"
+        >
             <Checkmark />
             <h2 className="text-neutral-black text-xl font-bold">
                 Thanks for your support!
@@ -28,7 +35,7 @@ const PledgeConfirmation = () => {
             >
                 Got it!
             </SecondaryBtn>
-        </div>
+        </m.div>
     );
 };
 

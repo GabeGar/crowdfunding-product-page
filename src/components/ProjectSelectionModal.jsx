@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { motion as m } from 'framer-motion';
 import { useProjectSelection } from '../contexts/ProjectSelectionContext';
 import { usePledge } from '../contexts/PledgeContext';
 
@@ -29,7 +30,12 @@ const ProjectSelectionModal = () => {
 
     return (
         <Overlay>
-            <div
+            <m.div
+                key={'modal'}
+                transition={{ duration: 0.2, ease: 'easeInOut' }}
+                initial={{ opacity: 0, x: -100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 100 }}
                 className={`${
                     pledgeSuccessful ? `sm:max-w-[32rem]` : `sm:max-w-[45rem]`
                 } mx-auto sm:p-8 flex flex-col gap-4 mt-[5.5rem] bg-white rounded-lg p-6 text-neutral-dark-gray`}
@@ -55,7 +61,7 @@ const ProjectSelectionModal = () => {
                     </>
                 )}
                 {pledgeSuccessful && <PledgeConfirmation />}
-            </div>
+            </m.div>
         </Overlay>
     );
 };

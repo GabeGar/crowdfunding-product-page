@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion as m } from 'framer-motion';
 import { usePledge } from '../contexts/PledgeContext';
 import { useProjectSelection } from '../contexts/ProjectSelectionContext';
 
@@ -134,7 +135,13 @@ const ProjectOption = ({
                             Enter your pledge
                         </p>
                     )}
-                    <div className="relative sm:w-full flex justify-end">
+
+                    <m.div
+                        transition={{ duration: 0.2, ease: 'easeOut' }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="relative sm:w-full flex justify-end"
+                    >
                         {!isBasicPledge && (
                             <PledgeForm
                                 isMobile={isMobile}
@@ -151,7 +158,7 @@ const ProjectOption = ({
                                 Continue
                             </SecondaryBtn>
                         )}
-                    </div>
+                    </m.div>
                 </div>
             )}
         </section>

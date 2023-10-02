@@ -9,7 +9,7 @@ const Header = () => {
 
     return (
         <header className="lg:max-w-[80dvw] sm:w-full sm:mx-auto sm:pt-5 flex justify-between items-center">
-            <Logo />
+            {!mobileMenuVisible && <Logo />}
             <nav>
                 {!mobileMenuVisible && <HamburgerMenu />}
                 <ul className="flex gap-10 msm:hidden text-white font-medium">
