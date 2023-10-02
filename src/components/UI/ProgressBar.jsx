@@ -1,7 +1,7 @@
-import { usePledge } from '../../contexts/PledgeContext';
+import { useProjects } from '../../contexts/ProjectContext';
 
 const ProgressBar = () => {
-    const { projectProgress } = usePledge();
+    const { projectProgress } = useProjects();
     const { totalRaised, goal } = projectProgress;
 
     return (

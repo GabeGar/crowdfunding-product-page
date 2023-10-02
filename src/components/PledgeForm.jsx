@@ -1,23 +1,33 @@
-import { useCallback } from 'react';
-import { usePledge } from '../contexts/PledgeContext';
+import { useProjects } from '../contexts/ProjectContext';
 
 import SecondaryBtn from './UI/SecondaryBtn';
 
 const MAX_AMOUNT = 9999;
 
-const PledgeForm = ({ isMobile, price, currentAmount, setCurrentAmount }) => {
-    const { dispatch, setPledgeSuccessful } = usePledge();
+const PledgeForm = ({
+    isMobile,
+    price,
+    selectedId,
+    currentAmount,
+    setCurrentAmount,
+}) => {
+    const { dispatch, setPledgeSuccessful } = useProjects();
 
-    const handlePledgeSubmission = useCallback(() => {
+    const handlePledgeSubmission = () => {
         if (!currentAmount) return;
+
+        const progressUpdateObj = {
+            currentAmount,
+            id: selectedId,
+        };
 
         dispatch({
             type: 'project/reward',
-            payload: currentAmount,
+            payload: progressUpdateObj,
         });
 
         setPledgeSuccessful(true);
-    }, [currentAmount, dispatch, setPledgeSuccessful]);
+    };
 
     const handleFormSubmit = (e) => {
         e.preventDefault();

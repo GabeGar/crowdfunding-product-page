@@ -1,12 +1,12 @@
 import { motion as m } from 'framer-motion';
-import { usePledge } from '../contexts/PledgeContext.jsx';
+import { useProjects } from '../contexts/ProjectContext.jsx';
 import { useProjectSelection } from '../contexts/ProjectSelectionContext.jsx';
 import Checkmark from './UI/Checkmark.jsx';
 import SecondaryBtn from './UI/SecondaryBtn.jsx';
 
 const PledgeConfirmation = () => {
     const { setSelectionMenuIsVisible, setSelectedID } = useProjectSelection();
-    const { setPledgeSuccessful } = usePledge();
+    const { setPledgeSuccessful } = useProjects();
 
     return (
         <m.div

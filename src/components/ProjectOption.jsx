@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion as m } from 'framer-motion';
-import { usePledge } from '../contexts/PledgeContext';
+import { useProjects } from '../contexts/ProjectContext';
 import { useProjectSelection } from '../contexts/ProjectSelectionContext';
 
 import PrimaryBtn from './UI/PrimaryBtn';
@@ -20,7 +20,7 @@ const ProjectOption = ({
     const [currentAmount, setCurrentAmount] = useState(price);
     const { isMobile, selectedID, setSelectedID, selectionMenuIsVisible } =
         useProjectSelection();
-    const { dispatch, setPledgeSuccessful } = usePledge();
+    const { dispatch, setPledgeSuccessful } = useProjects();
 
     const isChecked = selectedID === id;
     const outOfStock = remaining === 0 ? true : false;
@@ -148,6 +148,7 @@ const ProjectOption = ({
                                 price={price}
                                 currentAmount={currentAmount}
                                 setCurrentAmount={setCurrentAmount}
+                                selectedId={selectedID}
                             />
                         )}
                         {isBasicPledge && (

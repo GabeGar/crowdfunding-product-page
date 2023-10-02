@@ -1,4 +1,4 @@
-import { usePledge } from '../contexts/PledgeContext';
+import { useProjects } from '../contexts/ProjectContext';
 import { insertCommasInNumber } from '../utilities/insertCommasInNumber';
 
 import AboutProjectDescription from './AboutProjectDescription';
@@ -10,7 +10,7 @@ import ProgressBar from './UI/ProgressBar';
 import ThematicDivider from './UI/ThematicDivider';
 
 const MainContent = () => {
-    const { projectProgress } = usePledge();
+    const { projectProgress } = useProjects();
     const { totalBackers, totalRaised, goal } = projectProgress;
 
     const totalRaisedStr = insertCommasInNumber(totalRaised);

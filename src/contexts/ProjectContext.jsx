@@ -3,18 +3,19 @@ import projectProgressReducer, {
     initProjectProgressState,
 } from '../reducers/projectProgressReducer';
 
-const PledgeContext = createContext({
+const ProjectContext = createContext({
     pledgeSuccessful: false,
     setPledgeSuccessful: () => {},
     projectProgress: {
         totalBackers: 5007,
         totalRaised: 89914,
         goal: 100000,
+        projects: [],
     },
     dispatch: () => {},
 });
 
-const PledgeContextProvider = ({ children }) => {
+const ProjectContextProvider = ({ children }) => {
     const [projectProgress, dispatch] = useReducer(
         projectProgressReducer,
         initProjectProgressState,
@@ -22,7 +23,7 @@ const PledgeContextProvider = ({ children }) => {
     const [pledgeSuccessful, setPledgeSuccessful] = useState(false);
 
     return (
-        <PledgeContext.Provider
+        <ProjectContext.Provider
             value={{
                 pledgeSuccessful,
                 setPledgeSuccessful,
@@ -31,12 +32,12 @@ const PledgeContextProvider = ({ children }) => {
             }}
         >
             {children}
-        </PledgeContext.Provider>
+        </ProjectContext.Provider>
     );
 };
 
-const usePledge = () => {
-    const ctx = useContext(PledgeContext);
+const useProjects = () => {
+    const ctx = useContext(ProjectContext);
 
     if (ctx === undefined) {
         throw new Error(
@@ -47,5 +48,5 @@ const usePledge = () => {
     return ctx;
 };
 
-export default PledgeContextProvider;
-export { usePledge };
+export default ProjectContextProvider;
+export { useProjects };

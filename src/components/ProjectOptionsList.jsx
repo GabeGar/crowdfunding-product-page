@@ -1,9 +1,12 @@
-import data from '../data/data.json';
+import { useProjects } from '../contexts/ProjectContext.jsx';
 
 import ProjectOption from './ProjectOption';
 
 const ProjectOptionsList = ({ showRadio = false, filterById = null }) => {
-    return data
+    const { projectProgress } = useProjects();
+    const { projects } = projectProgress;
+
+    return projects
         .filter((el) => el.id !== filterById)
         .map((item) => {
             return (

@@ -5,16 +5,16 @@ import MobileMenuProvider from './contexts/MobileMenuContext.jsx';
 import App from './App.jsx';
 import './index.css';
 import ProjectSelectionContextProvider from './contexts/ProjectSelectionContext.jsx';
-import PledgeContextProvider from './contexts/PledgeContext.jsx';
+import ProjectContextProvider from './contexts/ProjectContext.jsx';
 
 ReactDOM.createRoot(document.querySelector('#root')).render(
     <React.StrictMode>
         <ProjectSelectionContextProvider>
-            <PledgeContextProvider>
+            <ProjectContextProvider>
                 <MobileMenuProvider>
                     <App />
                 </MobileMenuProvider>
-            </PledgeContextProvider>
+            </ProjectContextProvider>
         </ProjectSelectionContextProvider>
     </React.StrictMode>,
 );

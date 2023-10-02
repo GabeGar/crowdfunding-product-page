@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion as m } from 'framer-motion';
 import { useProjectSelection } from '../contexts/ProjectSelectionContext';
-import { usePledge } from '../contexts/PledgeContext';
+import { useProjects } from '../contexts/ProjectContext';
 
 import Overlay from './UI/Overlay';
 import SecondaryBtn from './UI/SecondaryBtn';
@@ -11,7 +11,7 @@ import ProjectOptionsList from './ProjectOptionsList';
 import CloseModal from './UI/CloseModal';
 
 const ProjectSelectionModal = () => {
-    const { pledgeSuccessful } = usePledge();
+    const { pledgeSuccessful } = useProjects();
     const { setSelectedID, setSelectionMenuIsVisible } = useProjectSelection();
 
     const handleExitModal = () => {

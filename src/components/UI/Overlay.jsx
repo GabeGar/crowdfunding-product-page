@@ -1,10 +1,10 @@
 import { useMobileMenu } from '../../contexts/MobileMenuContext';
-import { usePledge } from '../../contexts/PledgeContext';
+import { useProjects } from '../../contexts/ProjectContext';
 import { useProjectSelection } from '../../contexts/ProjectSelectionContext';
 
 const Overlay = ({ children }) => {
     const { mobileMenuVisible, setMobileMenuVisible } = useMobileMenu();
-    const { pledgeSuccessful, setPledgeSuccessful } = usePledge();
+    const { pledgeSuccessful, setPledgeSuccessful } = useProjects();
     const { setSelectedID, setSelectionMenuIsVisible } = useProjectSelection();
 
     const handleOverlay = () => {
