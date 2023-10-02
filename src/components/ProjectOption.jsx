@@ -129,7 +129,11 @@ const ProjectOption = ({
                 <div
                     className={`sm:flex-row sm:justify-between flex flex-col items-center pt-6 gap-5 border-t-2`}
                 >
-                    {!isBasicPledge && <p>Enter your pledge</p>}
+                    {!isBasicPledge && (
+                        <p className={`${isInModalMenuDesktop && 'w-full'}`}>
+                            Enter your pledge
+                        </p>
+                    )}
                     <div className="relative sm:w-full flex justify-end">
                         {!isBasicPledge && (
                             <PledgeForm
