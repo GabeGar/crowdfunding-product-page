@@ -12,7 +12,7 @@ const HamburgerMenu = () => {
 
     return (
         <SecondaryBtn
-            classes={'sm:hidden'}
+            classes={'sm:hidden flex'}
             onClick={handleMobileMenuVisibility}
         >
             <img src={hamburger} alt="Menu toggle" />

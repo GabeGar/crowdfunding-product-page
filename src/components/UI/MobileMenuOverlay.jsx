@@ -32,7 +32,7 @@ const MobileMenu = () => {
                 </button>
             </div>
             <nav>
-                <ul className="grid grid-rows-3 my-[5rem] rounded-lg bg-white font-medium all-child:p-6 not-last-child:border-b-2">
+                <ul className="grid grid-rows-3 my-[5rem] rounded-lg bg-white font-medium child:p-6 not-last-child:border-b-2">
                     <li>
                         <NavLink
                             classes={'block'}

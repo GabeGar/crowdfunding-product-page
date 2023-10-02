@@ -1,5 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+    future: {
+        hoverOnlyWhenSupported: true,
+    },
     content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
     theme: {
         extend: {
@@ -24,8 +27,9 @@ export default {
     },
     plugins: [
         function ({ addVariant }) {
-            addVariant('all-child', '& > *');
+            addVariant('child', '& > *');
             addVariant('not-last-child', '& > *:not(:last-child)');
+            addVariant('is-article', '& > *:is(article)');
         },
     ],
 };

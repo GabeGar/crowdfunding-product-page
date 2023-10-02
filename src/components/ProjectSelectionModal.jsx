@@ -29,14 +29,17 @@ const ProjectSelectionModal = () => {
 
     return (
         <Overlay>
-            <div className="flex flex-col gap-4 my-[5.5rem] bg-white rounded-lg p-6 text-neutral-dark-gray">
+            <div className="sm:max-w-[45rem] mx-auto sm:p-8 flex flex-col gap-4 my-[5.5rem] bg-white rounded-lg p-6 text-neutral-dark-gray">
                 {!pledgeSuccessful && (
                     <>
                         <div className="flex justify-between">
                             <h2 className=" text-lg text-neutral-black font-bold">
                                 Back This Project
                             </h2>
-                            <SecondaryBtn onClick={handleExitModal}>
+                            <SecondaryBtn
+                                classes={'group'}
+                                onClick={handleExitModal}
+                            >
                                 <img
                                     src={closeModal}
                                     alt="exit selection menu"

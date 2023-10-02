@@ -6,6 +6,7 @@ import PrimaryBtn from './UI/PrimaryBtn';
 import SecondaryBtn from './UI/SecondaryBtn';
 import RadioBtn from './UI/RadioBtn';
 import PledgeForm from './PledgeForm';
+import ProjectOptionRemainder from './ProjectOptionRemainder';
 
 const ProjectOption = ({
     id,
@@ -16,7 +17,7 @@ const ProjectOption = ({
     showRadio,
 }) => {
     const [currentAmount, setCurrentAmount] = useState(price);
-    const { selectedID, setSelectedID, selectionMenuIsVisible } =
+    const { isMobile, selectedID, setSelectedID, selectionMenuIsVisible } =
         useProjectSelection();
     const { dispatch, setPledgeSuccessful } = usePledge();
 
@@ -24,7 +25,10 @@ const ProjectOption = ({
     const outOfStock = remaining === 0 ? true : false;
     const currentMenuSelection =
         selectionMenuIsVisible && isChecked && showRadio && !outOfStock;
-    const isBasicPledge = selectionMenuIsVisible && !price && !remaining;
+
+    const isBasicPledge = !price && !remaining;
+    const isOnHomePageDesktop = !selectionMenuIsVisible && !isMobile;
+    const isInModalMenuDesktop = selectionMenuIsVisible && !isMobile;
 
     const handlePledgeSubmission = () => {
         dispatch({
@@ -36,7 +40,7 @@ const ProjectOption = ({
 
     return (
         <section
-            className={`flex flex-col gap-5 bg-white rounded-lg p-5 border border-solid ${
+            className={`group flex flex-col gap-5 bg-white rounded-lg p-5 border border-solid ${
                 currentMenuSelection
                     ? `border-primary-moderate-cyan border-2`
                     : !outOfStock
@@ -50,23 +54,51 @@ const ProjectOption = ({
         >
             <div className="flex gap-4">
                 {showRadio && (
-                    <RadioBtn currentMenuSelection={currentMenuSelection} />
+                    <RadioBtn
+                        currentMenuSelection={currentMenuSelection}
+                        outOfStock={outOfStock}
+                    />
+                )}
+                {(isInModalMenuDesktop || isOnHomePageDesktop) && (
+                    <span
+                        className={`${
+                            (selectionMenuIsVisible &&
+                                !outOfStock &&
+                                `group-hover:text-primary-moderate-cyan`) ||
+                            ''
+                        } ${
+                            outOfStock && 'text-neutral-dark-gray'
+                        } sm:w-full text-neutral-black font-bold`}
+                    >
+                        {name}
+                    </span>
                 )}
                 <h3
-                    className={`flex flex-col gap-1 ${
+                    className={`sm:w-full flex flex-col gap-1 ${
                         !outOfStock
                             ? `text-neutral-black`
                             : `text-neutral-black/50`
                     }`}
                 >
-                    <span className="font-bold">{name}</span>
+                    {isMobile && (
+                        <span
+                            className={`${
+                                selectionMenuIsVisible &&
+                                !outOfStock &&
+                                `group-hover:text-primary-moderate-cyan`
+                            } font-bold`}
+                        >
+                            {name}
+                        </span>
+                    )}
+
                     {!isBasicPledge && (
                         <span
                             className={`${
                                 !outOfStock
                                     ? `text-primary-moderate-cyan`
                                     : `text-primary-moderate-cyan/50`
-                            } font-medium`}
+                            } sm:self-end font-medium`}
                         >
                             Pledge ${price} or more
                         </span>
@@ -76,27 +108,21 @@ const ProjectOption = ({
             <p className={`${!outOfStock ? `` : `text-neutral-dark-gray/50`}`}>
                 {description}
             </p>
-            {!isBasicPledge && (
-                <p className="flex items-center gap-2">
-                    <span
-                        className={`${
-                            !outOfStock
-                                ? `text-neutral-black`
-                                : `text-neutral-black/50`
-                        } ${
-                            selectionMenuIsVisible ? `text-2xl` : `text-4xl`
-                        } font-bold `}
-                    >
-                        {remaining}
-                    </span>
-                    <span>left</span>
-                </p>
-            )}
-            {!selectionMenuIsVisible && (
-                <PrimaryBtn isDisabled={outOfStock}>
-                    {!outOfStock ? `Select Reward` : `Out of Stock`}
-                </PrimaryBtn>
-            )}
+            <div className="sm:flex-row sm:justify-between flex flex-col gap-4">
+                {!isBasicPledge && (
+                    <ProjectOptionRemainder
+                        isBasicPledge={isBasicPledge}
+                        selectionMenuIsVisible={selectionMenuIsVisible}
+                        outOfStock={outOfStock}
+                        remaining={remaining}
+                    />
+                )}
+                {!selectionMenuIsVisible && (
+                    <PrimaryBtn isDisabled={outOfStock}>
+                        {!outOfStock ? `Select Reward` : `Out of Stock`}
+                    </PrimaryBtn>
+                )}
+            </div>
             {currentMenuSelection && (
                 <div className="flex flex-col items-center pt-6 gap-5 border-t-2">
                     {!isBasicPledge && <p>Enter your pledge</p>}
