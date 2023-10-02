@@ -23,7 +23,7 @@ const ProjectOption = ({
     const { dispatch, setPledgeSuccessful } = useProjects();
 
     const isChecked = selectedID === id;
-    const outOfStock = remaining === 0 ? true : false;
+    const outOfStock = remaining <= 0 ? true : false;
     const currentMenuSelection =
         selectionMenuIsVisible && isChecked && showRadio && !outOfStock;
 

@@ -18,6 +18,7 @@ const PledgeForm = ({
 
         const progressUpdateObj = {
             currentAmount,
+            reduceRemainingByOne: 1,
             id: selectedId,
         };
 

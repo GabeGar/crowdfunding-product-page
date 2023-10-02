@@ -7,21 +7,31 @@ const initProjectProgressState = {
     projects: data,
 };
 
+const ONE_BACKER = 1;
+
 const projectProgressReducer = (state, action) => {
     switch (action.type) {
         case 'project/no-reward': {
             return {
                 ...state,
-                totalBackers: state.totalBackers + 1,
+                totalBackers: state.totalBackers + ONE_BACKER,
             };
         }
 
         case 'project/reward': {
             const updatedProjectsList = state.projects.map((project) => {
                 if (project.id === action.payload.id) {
+                    const isNegativeValue =
+                        project.remaining -
+                            action.payload.reduceRemainingByOne <
+                        0;
+
                     return {
                         ...project,
-                        remaining: project.remaining - 1,
+                        remaining: isNegativeValue
+                            ? 0
+                            : project.remaining -
+                              action.payload.reduceRemainingByOne,
                     };
                 }
                 return project;
