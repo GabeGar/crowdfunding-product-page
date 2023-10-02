@@ -3,10 +3,20 @@ import { useProjects } from '../contexts/ProjectContext.jsx';
 import { useProjectSelection } from '../contexts/ProjectSelectionContext.jsx';
 import Checkmark from './UI/Checkmark.jsx';
 import SecondaryBtn from './UI/SecondaryBtn.jsx';
+import useKey from '../hooks/useKey.jsx';
+import { useCallback } from 'react';
 
 const PledgeConfirmation = () => {
     const { setSelectionMenuIsVisible, setSelectedID } = useProjectSelection();
     const { setPledgeSuccessful } = useProjects();
+
+    const handlePledgeConfirmation = useCallback(() => {
+        setSelectedID(null);
+        setSelectionMenuIsVisible(false);
+        setPledgeSuccessful(false);
+    }, [setSelectedID, setSelectionMenuIsVisible, setPledgeSuccessful]);
+
+    useKey('Enter', handlePledgeConfirmation);
 
     return (
         <m.div
