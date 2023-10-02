@@ -15,24 +15,24 @@ const Header = () => {
                 <ul className="flex gap-10 msm:hidden text-white font-medium">
                     <li>
                         <NavLink
-                            classes={'transition-all hover:font-bold'}
-                            href={'About page'}
+                            classes="transition hover:font-bold"
+                            href="About page"
                         >
                             About
                         </NavLink>
                     </li>
                     <li>
                         <NavLink
-                            classes={'transition-all hover:font-bold'}
-                            href={'Discover Page'}
+                            classes="transition hover:font-bold"
+                            href="Discover Page"
                         >
                             Discover
                         </NavLink>
                     </li>
                     <li>
                         <NavLink
-                            classes={'transition-all hover:font-bold'}
-                            href={'Get Started Page'}
+                            classes="transition hover:font-bold"
+                            href="Get Started Page"
                         >
                             Get Started
                         </NavLink>
