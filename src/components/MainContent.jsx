@@ -17,7 +17,7 @@ const MainContent = () => {
     const totalBackersStr = insertCommasInNumber(totalBackers);
 
     return (
-        <main className="sm:child:px-10 flex flex-col gap-7 2xl:mt-[30dvh] xl:mt-[22dvh] lg:mt-[15dvh] md:mt-[12dvh] sm:mt-[7dvh] xsm:mt-[7rem] mt-[11.65rem]">
+        <main className="sm:child:px-10 flex flex-col gap-7 2xl:mt-[25dvh] xl:mt-[20dvh] lg:mt-[15dvh] md:mt-[10dvh] sm:mt-[7dvh] mt-[9.5rem]">
             <section className="relative flex flex-col justify-center bg-white rounded-lg px-6 border border-solid border-neutral-dark-gray/10">
                 <MastercraftLogo />
                 <div className="flex flex-col gap-6 pt-16 pb-10 text-center">

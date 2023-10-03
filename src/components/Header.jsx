@@ -8,7 +8,7 @@ const Header = () => {
     const { mobileMenuVisible } = useMobileMenu();
 
     return (
-        <header className="lg:max-w-[80dvw] sm:w-full sm:mx-auto sm:pt-5 flex justify-between items-center">
+        <header className="lg:max-w-[77dvw] sm:w-full sm:mx-auto px-6 py-8 flex justify-between items-center">
             {!mobileMenuVisible && <Logo />}
             <nav>
                 {!mobileMenuVisible && <HamburgerMenu />}

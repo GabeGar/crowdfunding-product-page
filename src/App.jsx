@@ -20,10 +20,12 @@ const App = () => {
 
             <div className=" sm:bg-hero-desktop bg-neutral-dark-gray/5 bg-no-repeat bg-top bg-[100%,auto]">
                 <div className="min-h-screen mx-auto">
-                    <div className="min-h-[42dvh] sm:bg-none bg-hero-mobile bg-[100%,auto] bg-no-repeat bg-top px-6 py-8">
-                        <Header />
+                    <div className="min-h-[42dvh] sm:bg-none bg-hero-mobile bg-[100%,auto] bg-no-repeat bg-top sm:px-0 sm:py-0">
+                        <div className="w-full bg-gradient-to-b from-neutral-black/50 to-neutral-black/0 ">
+                            <Header />
+                        </div>
 
-                        <div className="sm:max-w-[45rem] mx-auto">
+                        <div className="sm:max-w-[45rem] px-6 mx-auto">
                             <MainContent />
                         </div>
                     </div>
