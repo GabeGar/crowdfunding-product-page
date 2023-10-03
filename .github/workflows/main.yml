@@ -1,5 +1,4 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name: Deploy to GH-Pages
 
 on:
     # Runs on pushes targeting the default branch
@@ -30,6 +29,8 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v3
+            - name: Clear npm cache
+              run: npm cache clean --force
             - name: Set up Node
               uses: actions/setup-node@v3
               with:
