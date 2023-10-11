@@ -1,5 +1,6 @@
 import { FormEvent } from 'react';
 import { useProjects } from '../contexts/ProjectContext';
+import { ActionTypes } from '../types/actionTypes';
 
 import SecondaryBtn from './UI/SecondaryBtn';
 
@@ -32,7 +33,7 @@ const PledgeForm = ({
         };
 
         dispatch({
-            type: 'project/reward',
+            type: ActionTypes.REWARD_PLEDGE,
             payload: progressUpdateObj,
         });
 
@@ -60,7 +61,9 @@ const PledgeForm = ({
                 autoFocus={!isMobile}
                 max={MAX_AMOUNT}
                 value={currentAmount ? currentAmount : ''}
-                onChange={(e) => setCurrentAmount(Number(e.target.value))}
+                onChange={(e) => {
+                    setCurrentAmount(Number(e.target.value));
+                }}
             />
             <SecondaryBtn
                 classes={`transition-colors  hover:bg-primary-dark-cyan px-8 py-3 rounded-[2rem] text-white font-bold bg-primary-moderate-cyan`}

@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { ReactChildrenNode } from '../models/reactChildNode';
+import { ReactChildrenNode } from '../types/reactChildNode';
 
 interface ProjectSelectionContext {
     selectionMenuIsVisible: boolean;
@@ -11,9 +11,9 @@ interface ProjectSelectionContext {
 
 const ProjectSelectionContext = createContext<ProjectSelectionContext>({
     selectionMenuIsVisible: false,
-    setSelectionMenuIsVisible: () => {},
+    setSelectionMenuIsVisible: () => false,
     selectedID: null,
-    setSelectedID: () => {},
+    setSelectedID: () => null,
     isMobile: false,
 });
 
@@ -33,7 +33,9 @@ const ProjectSelectionContextProvider = ({ children }: ReactChildrenNode) => {
 
         window.addEventListener('resize', handleResize);
 
-        return () => window.removeEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
     }, [setIsMobile]);
 
     return (
@@ -52,15 +54,7 @@ const ProjectSelectionContextProvider = ({ children }: ReactChildrenNode) => {
 };
 
 const useProjectSelection = () => {
-    const ctx = useContext(ProjectSelectionContext);
-
-    if (ctx === undefined) {
-        throw new Error(
-            'Project selection context was used outside of Project Selection Context provider',
-        );
-    }
-
-    return ctx;
+    return useContext(ProjectSelectionContext);
 };
 
 export default ProjectSelectionContextProvider;

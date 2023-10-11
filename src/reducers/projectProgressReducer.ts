@@ -1,4 +1,5 @@
-import { ProjectActions, ProjectProgress } from '../models/projectTypes';
+import { ProjectProgress } from '../types/projectTypes';
+import { ActionTypes, ProjectActions } from '../types/actionTypes';
 import data from '../data/data.json';
 
 const initProjectProgressState: ProjectProgress = {
@@ -15,14 +16,14 @@ const projectProgressReducer = (
     action: ProjectActions,
 ) => {
     switch (action.type) {
-        case 'project/no-reward': {
+        case ActionTypes.BASIC_PLEDGE: {
             return {
                 ...state,
                 totalBackers: state.totalBackers + ONE_BACKER,
             };
         }
 
-        case 'project/reward': {
+        case ActionTypes.REWARD_PLEDGE: {
             const updatedProjectsList = state.projects.map((project) => {
                 if (project.id === action.payload.id && project.remaining) {
                     const isNegativeValue =

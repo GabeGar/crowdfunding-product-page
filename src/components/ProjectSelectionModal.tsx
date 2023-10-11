@@ -65,11 +65,14 @@ const ProjectSelectionModal = () => {
     );
 };
 
-const ProjectSelectionOverlay = () => {
-    return createPortal(
-        <ProjectSelectionModal />,
-        document.querySelector('#overlay--root') as HTMLDivElement,
-    );
+const ProjectSelectionOverlay = (): React.ReactPortal | never => {
+    const overlayRoot = document.querySelector('#overlay--root');
+
+    if (overlayRoot !== null) {
+        return createPortal(<ProjectSelectionModal />, overlayRoot);
+    }
+
+    throw new Error('Overlay root not found/does not exist.');
 };
 
 export default ProjectSelectionOverlay;

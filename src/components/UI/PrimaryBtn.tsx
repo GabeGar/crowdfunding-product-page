@@ -18,8 +18,10 @@ const PrimaryBtn = ({ isDisabled, children }: PrimaryBtn) => {
                     ? `bg-primary-moderate-cyan hover:bg-primary-dark-cyan transition-colors`
                     : `bg-neutral-dark-gray/50`
             }`}
-            disabled={isDisabled ?? false}
-            onClick={() => setSelectionMenuIsVisible(true)}
+            disabled={isDisabled}
+            onClick={() => {
+                setSelectionMenuIsVisible(true);
+            }}
         >
             {children}
         </button>

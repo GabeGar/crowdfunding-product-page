@@ -75,10 +75,13 @@ const MobileMenu = () => {
 };
 
 const MobileMenuOverlay = () => {
-    return createPortal(
-        <MobileMenu />,
-        document.querySelector('#overlay--root') as HTMLDivElement,
-    );
+    const overlayRoot = document.querySelector('#overlay--root');
+
+    if (overlayRoot !== null) {
+        return createPortal(<MobileMenu />, overlayRoot);
+    }
+
+    throw new Error('Overlay root not found/does not exist.');
 };
 
 export default MobileMenuOverlay;

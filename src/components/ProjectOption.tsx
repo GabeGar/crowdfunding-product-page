@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { motion as m } from 'framer-motion';
 import { useProjects } from '../contexts/ProjectContext';
 import { useProjectSelection } from '../contexts/ProjectSelectionContext';
-import { Project } from '../models/projectTypes';
+import { Project } from '../types/projectTypes';
+import { ActionTypes } from '../types/actionTypes';
 
 import PrimaryBtn from './UI/PrimaryBtn';
 import SecondaryBtn from './UI/SecondaryBtn';
@@ -40,7 +41,7 @@ const ProjectOption = ({
         if (selectedID !== 0) return;
 
         dispatch({
-            type: 'project/no-reward',
+            type: ActionTypes.BASIC_PLEDGE,
         });
 
         setPledgeSuccessful(true);
@@ -73,12 +74,11 @@ const ProjectOption = ({
                 {(isInModalMenuDesktop || isOnHomePageDesktop) && (
                     <span
                         className={`transition-colors ${
-                            (selectionMenuIsVisible &&
-                                !outOfStock &&
-                                `group-hover:text-primary-moderate-cyan`) ||
-                            ''
+                            selectionMenuIsVisible &&
+                            !outOfStock &&
+                            'group-hover:text-primary-moderate-cyan'
                         } ${
-                            outOfStock && 'text-neutral-dark-gray'
+                            outOfStock ? 'text-neutral-dark-gray' : ''
                         } sm:w-full text-neutral-black font-bold`}
                     >
                         {name}

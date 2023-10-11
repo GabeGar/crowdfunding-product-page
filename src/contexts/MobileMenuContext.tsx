@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { ReactChildrenNode } from '../models/reactChildNode';
+import { ReactChildrenNode } from '../types/reactChildNode';
 
 interface MobileContext {
     mobileMenuVisible: boolean;
@@ -8,7 +8,7 @@ interface MobileContext {
 
 const MobileMenuContext = createContext<MobileContext>({
     mobileMenuVisible: false,
-    setMobileMenuVisible: () => {},
+    setMobileMenuVisible: () => false,
 });
 
 const MobileMenuProvider = ({ children }: ReactChildrenNode) => {
@@ -23,7 +23,9 @@ const MobileMenuProvider = ({ children }: ReactChildrenNode) => {
 
         window.addEventListener('resize', handleResize);
 
-        return () => window.removeEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
     }, []);
 
     return (
@@ -39,15 +41,7 @@ const MobileMenuProvider = ({ children }: ReactChildrenNode) => {
 };
 
 const useMobileMenu = () => {
-    const ctx = useContext(MobileMenuContext);
-
-    if (ctx === undefined) {
-        throw new Error(
-            'Mobile menu context was used outside the MobileMenuProvider.',
-        );
-    }
-
-    return ctx;
+    return useContext(MobileMenuContext);
 };
 
 export default MobileMenuProvider;

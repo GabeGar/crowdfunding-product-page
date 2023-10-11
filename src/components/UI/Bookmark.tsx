@@ -9,7 +9,9 @@ const Bookmark = () => {
     return (
         <button
             className="group"
-            onClick={() => setIsBookMarked((marked) => !marked)}
+            onClick={() => {
+                setIsBookMarked((marked) => !marked);
+            }}
         >
             <div
                 className={`flex items-center rounded-full ${

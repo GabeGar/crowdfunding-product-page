@@ -12,13 +12,3 @@ export interface ProjectProgress {
     goal: number;
     projects: Project[];
 }
-
-interface RewardPayload {
-    id: number;
-    reduceRemainingByOne: number;
-    currentAmount: number;
-}
-
-export type ProjectActions =
-    | { type: 'project/no-reward' }
-    | { type: 'project/reward'; payload: RewardPayload };

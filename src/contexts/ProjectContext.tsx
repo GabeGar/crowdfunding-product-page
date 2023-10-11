@@ -2,8 +2,9 @@ import { createContext, useContext, useReducer, useState } from 'react';
 import projectProgressReducer, {
     initProjectProgressState,
 } from '../reducers/projectProgressReducer';
-import { ReactChildrenNode } from '../models/reactChildNode';
-import { ProjectActions, ProjectProgress } from '../models/projectTypes';
+import { ReactChildrenNode } from '../types/reactChildNode';
+import { ProjectProgress } from '../types/projectTypes';
+import { ProjectActions } from '../types/actionTypes';
 
 export interface ProjectContext {
     pledgeSuccessful: boolean;
@@ -14,14 +15,14 @@ export interface ProjectContext {
 
 const ProjectContext = createContext<ProjectContext>({
     pledgeSuccessful: false,
-    setPledgeSuccessful: () => {},
+    setPledgeSuccessful: () => false,
     projectProgress: {
         totalBackers: 5007,
         totalRaised: 89914,
         goal: 100000,
         projects: [],
     },
-    dispatch: () => {},
+    dispatch: () => ({ type: '' }),
 });
 
 const ProjectContextProvider = ({ children }: ReactChildrenNode) => {
@@ -46,15 +47,7 @@ const ProjectContextProvider = ({ children }: ReactChildrenNode) => {
 };
 
 const useProjects = () => {
-    const ctx = useContext(ProjectContext);
-
-    if (ctx === undefined) {
-        throw new Error(
-            'Pledge context was used outside of the pledge context provider',
-        );
-    }
-
-    return ctx;
+    return useContext(ProjectContext);
 };
 
 export default ProjectContextProvider;
