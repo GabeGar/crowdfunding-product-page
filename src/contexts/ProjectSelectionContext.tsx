@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { ReactChildrenNode } from '../models/ReactChildNode';
+import { ReactChildrenNode } from '../models/reactChildNode';
 
 interface ProjectSelectionContext {
     selectionMenuIsVisible: boolean;

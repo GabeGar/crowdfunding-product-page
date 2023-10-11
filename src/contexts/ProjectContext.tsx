@@ -2,7 +2,7 @@ import { createContext, useContext, useReducer, useState } from 'react';
 import projectProgressReducer, {
     initProjectProgressState,
 } from '../reducers/projectProgressReducer';
-import { ReactChildrenNode } from '../models/ReactChildNode';
+import { ReactChildrenNode } from '../models/reactChildNode';
 import { ProjectActions, ProjectProgress } from '../models/projectTypes';
 
 export interface ProjectContext {

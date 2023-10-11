@@ -1,7 +1,7 @@
 import { useMobileMenu } from '../../contexts/MobileMenuContext';
 import { useProjects } from '../../contexts/ProjectContext';
 import { useProjectSelection } from '../../contexts/ProjectSelectionContext';
-import { ReactChildrenNode } from '../../models/ReactChildNode';
+import { ReactChildrenNode } from '../../models/reactChildNode';
 
 const Overlay = ({ children }: ReactChildrenNode) => {
     const { mobileMenuVisible, setMobileMenuVisible } = useMobileMenu();
