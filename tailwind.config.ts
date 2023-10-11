@@ -1,4 +1,5 @@
-/** @type {import('tailwindcss').Config} */
+import type { Config } from 'tailwindcss';
+
 export default {
     future: {
         hoverOnlyWhenSupported: true,
@@ -32,4 +33,4 @@ export default {
             addVariant('is-article', '& > *:is(article)');
         },
     ],
-};
+} satisfies Config;

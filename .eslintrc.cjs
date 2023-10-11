@@ -7,7 +7,12 @@ module.exports = {
         'plugin:@typescript-eslint/stylistic-type-checked',
         'plugin:react-hooks/recommended',
     ],
-    ignorePatterns: ['dist', '.eslintrc.cjs'],
+    ignorePatterns: [
+        'dist',
+        '.eslintrc.cjs',
+        'tailwind.config.ts',
+        'postcss.config.js',
+    ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaVersion: 'latest',
