@@ -1,7 +1,11 @@
 import logo from '../../assets/images/logo.svg';
 
-const Logo = ({ classes }) => {
-    const allClasses = classes ? classes : null;
+interface Classes {
+    classes?: string;
+}
+
+const Logo = ({ classes }: Classes) => {
+    const allClasses = classes ? classes : '';
 
     return (
         <span className={allClasses}>

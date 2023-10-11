@@ -1,8 +1,16 @@
-import { useProjects } from '../contexts/ProjectContext.jsx';
+import { useProjects } from '../contexts/ProjectContext.js';
 
 import ProjectOption from './ProjectOption';
 
-const ProjectOptionsList = ({ showRadio = false, filterById = null }) => {
+interface ProjectOptionsListProps {
+    showRadio?: boolean;
+    filterById?: number | null;
+}
+
+const ProjectOptionsList = ({
+    showRadio = false,
+    filterById = null,
+}: ProjectOptionsListProps) => {
     const { projectProgress } = useProjects();
     const { projects } = projectProgress;
 

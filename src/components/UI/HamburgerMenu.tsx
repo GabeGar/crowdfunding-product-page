@@ -1,7 +1,7 @@
 import { useMobileMenu } from '../../contexts/MobileMenuContext';
 
 import hamburger from '../../assets/images/icon-hamburger.svg';
-import SecondaryBtn from './SecondaryBtn';
+import SecondaryBtn from './SecondaryBtn.tsx';
 
 const HamburgerMenu = () => {
     const { setMobileMenuVisible } = useMobileMenu();

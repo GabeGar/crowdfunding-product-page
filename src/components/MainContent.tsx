@@ -1,5 +1,5 @@
 import { useProjects } from '../contexts/ProjectContext';
-import { insertCommasInNumber } from '../utilities/insertCommasInNumber';
+import { formatNumberAndStringify } from '../utilities/formatNumberAndStringify';
 
 import AboutProjectDescription from './AboutProjectDescription';
 import ProjectOptionsList from './ProjectOptionsList';
@@ -13,8 +13,8 @@ const MainContent = () => {
     const { projectProgress } = useProjects();
     const { totalBackers, totalRaised, goal } = projectProgress;
 
-    const totalRaisedStr = insertCommasInNumber(totalRaised);
-    const totalBackersStr = insertCommasInNumber(totalBackers);
+    const totalRaisedStr = formatNumberAndStringify(totalRaised);
+    const totalBackersStr = formatNumberAndStringify(totalBackers);
 
     return (
         <main className="sm:child:px-10 flex flex-col gap-7 2xl:mt-[25dvh] xl:mt-[20dvh] lg:mt-[15dvh] md:mt-[10dvh] sm:mt-[7dvh] mt-[9.5rem]">
@@ -29,7 +29,9 @@ const MainContent = () => {
                         and eye strain.
                     </p>
                     <div className="flex justify-between gap-1 last:sm:pt-5">
-                        <PrimaryBtn>Back this project</PrimaryBtn>
+                        <PrimaryBtn isDisabled={false}>
+                            Back this project
+                        </PrimaryBtn>
                         <Bookmark />
                     </div>
                 </div>

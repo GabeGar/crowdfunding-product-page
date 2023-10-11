@@ -1,21 +1,30 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import { ReactChildrenNode } from '../models/ReactChildNode';
 
-const ProjectSelectionContext = createContext({
+interface ProjectSelectionContext {
+    selectionMenuIsVisible: boolean;
+    setSelectionMenuIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+    selectedID: number | null;
+    setSelectedID: React.Dispatch<React.SetStateAction<number | null>>;
+    isMobile: boolean;
+}
+
+const ProjectSelectionContext = createContext<ProjectSelectionContext>({
     selectionMenuIsVisible: false,
     setSelectionMenuIsVisible: () => {},
-    isChecked: false,
-    setIsChecked: true,
+    selectedID: null,
+    setSelectedID: () => {},
     isMobile: false,
 });
 
-const ProjectSelectionContextProvider = ({ children }) => {
+const ProjectSelectionContextProvider = ({ children }: ReactChildrenNode) => {
     const [selectionMenuIsVisible, setSelectionMenuIsVisible] = useState(false);
-    const [selectedID, setSelectedID] = useState(null);
+    const [selectedID, setSelectedID] = useState<number | null>(null);
     const [isMobile, setIsMobile] = useState(() => window.innerWidth < 640);
 
     useEffect(() => {
-        const handleResize = (e) => {
-            if (e.target.innerWidth >= 640) {
+        const handleResize = () => {
+            if (window.innerWidth >= 640) {
                 setIsMobile(false);
             } else {
                 setIsMobile(true);
@@ -24,7 +33,7 @@ const ProjectSelectionContextProvider = ({ children }) => {
 
         window.addEventListener('resize', handleResize);
 
-        return () => window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
     }, [setIsMobile]);
 
     return (

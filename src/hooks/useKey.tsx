@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
-const useKey = (key, callback) => {
+const useKey = (key: string, callback: () => void) => {
     useEffect(() => {
-        const handleKeyDown = (e) => {
+        const handleKeyDown = (e: KeyboardEvent) => {
             if (e.key === key) {
                 callback();
             }

@@ -20,19 +20,18 @@ const ProjectSelectionModal = () => {
     };
 
     useEffect(() => {
-        const html = document.querySelector('html');
+        const html = document.querySelector('html') as HTMLElement;
         html.style.overflow = 'hidden';
 
         return () => {
-            html.style = null;
+            html.style.overflow = '';
         };
     }, []);
 
     return (
         <Overlay>
             <m.div
-                key={'modal'}
-                transition={{ duration: 0.2, ease: 'easeInOut' }}
+                transition={{ duration: 0.25, ease: 'easeInOut' }}
                 initial={{ opacity: 0, x: -100 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 100 }}
@@ -69,7 +68,7 @@ const ProjectSelectionModal = () => {
 const ProjectSelectionOverlay = () => {
     return createPortal(
         <ProjectSelectionModal />,
-        document.querySelector('#overlay--root'),
+        document.querySelector('#overlay--root') as HTMLDivElement,
     );
 };
 

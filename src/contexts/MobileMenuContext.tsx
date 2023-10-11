@@ -1,12 +1,18 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import { ReactChildrenNode } from '../models/ReactChildNode';
 
-const MobileMenuContext = createContext({
+interface MobileContext {
+    mobileMenuVisible: boolean;
+    setMobileMenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const MobileMenuContext = createContext<MobileContext>({
     mobileMenuVisible: false,
     setMobileMenuVisible: () => {},
 });
 
-const MobileMenuProvider = ({ children }) => {
-    const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
+const MobileMenuProvider = ({ children }: ReactChildrenNode) => {
+    const [mobileMenuVisible, setMobileMenuVisible] = useState<boolean>(false);
 
     useEffect(() => {
         const handleResize = () => {

@@ -1,8 +1,9 @@
 import { useMobileMenu } from '../../contexts/MobileMenuContext';
 import { useProjects } from '../../contexts/ProjectContext';
 import { useProjectSelection } from '../../contexts/ProjectSelectionContext';
+import { ReactChildrenNode } from '../../models/ReactChildNode';
 
-const Overlay = ({ children }) => {
+const Overlay = ({ children }: ReactChildrenNode) => {
     const { mobileMenuVisible, setMobileMenuVisible } = useMobileMenu();
     const { pledgeSuccessful, setPledgeSuccessful } = useProjects();
     const { setSelectedID, setSelectionMenuIsVisible } = useProjectSelection();

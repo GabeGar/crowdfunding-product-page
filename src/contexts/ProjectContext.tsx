@@ -2,8 +2,17 @@ import { createContext, useContext, useReducer, useState } from 'react';
 import projectProgressReducer, {
     initProjectProgressState,
 } from '../reducers/projectProgressReducer';
+import { ReactChildrenNode } from '../models/ReactChildNode';
+import { ProjectActions, ProjectProgress } from '../models/projectTypes';
 
-const ProjectContext = createContext({
+export interface ProjectContext {
+    pledgeSuccessful: boolean;
+    setPledgeSuccessful: React.Dispatch<React.SetStateAction<boolean>>;
+    projectProgress: ProjectProgress;
+    dispatch: React.Dispatch<ProjectActions>;
+}
+
+const ProjectContext = createContext<ProjectContext>({
     pledgeSuccessful: false,
     setPledgeSuccessful: () => {},
     projectProgress: {
@@ -15,12 +24,12 @@ const ProjectContext = createContext({
     dispatch: () => {},
 });
 
-const ProjectContextProvider = ({ children }) => {
+const ProjectContextProvider = ({ children }: ReactChildrenNode) => {
     const [projectProgress, dispatch] = useReducer(
         projectProgressReducer,
         initProjectProgressState,
     );
-    const [pledgeSuccessful, setPledgeSuccessful] = useState(false);
+    const [pledgeSuccessful, setPledgeSuccessful] = useState<boolean>(false);
 
     return (
         <ProjectContext.Provider

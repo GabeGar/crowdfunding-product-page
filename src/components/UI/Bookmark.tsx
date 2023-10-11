@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 const Bookmark = () => {
-    const [isBookMarked, setIsBookMarked] = useState(false);
+    const [isBookMarked, setIsBookMarked] = useState<boolean>(false);
 
     const circleFill = isBookMarked ? `#147b74` : `#2F2F2F`;
     const markFill = isBookMarked ? `#fff` : `#B1B1B1`;

@@ -1,10 +1,11 @@
-import { motion as m } from 'framer-motion';
-import { useProjects } from '../contexts/ProjectContext.jsx';
-import { useProjectSelection } from '../contexts/ProjectSelectionContext.jsx';
-import Checkmark from './UI/Checkmark.jsx';
-import SecondaryBtn from './UI/SecondaryBtn.jsx';
-import useKey from '../hooks/useKey.jsx';
 import { useCallback } from 'react';
+import { motion as m } from 'framer-motion';
+import { useProjects } from '../contexts/ProjectContext';
+import { useProjectSelection } from '../contexts/ProjectSelectionContext';
+
+import Checkmark from './UI/Checkmark';
+import SecondaryBtn from './UI/SecondaryBtn';
+import useKey from '../hooks/useKey';
 
 const PledgeConfirmation = () => {
     const { setSelectionMenuIsVisible, setSelectedID } = useProjectSelection();
@@ -20,9 +21,8 @@ const PledgeConfirmation = () => {
 
     return (
         <m.div
-            key={'confirmation'}
             transition={{ duration: 0.2, ease: 'easeIn' }}
-            initial={{ opacity: 0, y: -50 }}
+            initial={{ opacity: 0, y: -25 }}
             animate={{ opacity: 1, y: 0 }}
             className="flex flex-col items-center py-3 gap-7 text-center"
         >

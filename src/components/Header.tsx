@@ -1,8 +1,8 @@
 import { useMobileMenu } from '../contexts/MobileMenuContext';
 
-import NavLink from './UI/NavLink';
-import HamburgerMenu from './UI/HamburgerMenu';
-import Logo from './UI/Logo';
+import NavLink from './UI/NavLink.tsx';
+import HamburgerMenu from './UI/HamburgerMenu.tsx';
+import Logo from './UI/Logo.tsx';
 
 const Header = () => {
     const { mobileMenuVisible } = useMobileMenu();

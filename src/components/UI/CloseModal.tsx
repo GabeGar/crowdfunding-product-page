@@ -1,4 +1,8 @@
-const CloseModal = ({ pathClasses }) => {
+interface PathClasses {
+    pathClasses: string;
+}
+
+const CloseModal = ({ pathClasses }: PathClasses) => {
     return (
         <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg">
             <path

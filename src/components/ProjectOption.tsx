@@ -2,12 +2,17 @@ import { useState } from 'react';
 import { motion as m } from 'framer-motion';
 import { useProjects } from '../contexts/ProjectContext';
 import { useProjectSelection } from '../contexts/ProjectSelectionContext';
+import { Project } from '../models/projectTypes';
 
 import PrimaryBtn from './UI/PrimaryBtn';
 import SecondaryBtn from './UI/SecondaryBtn';
 import RadioBtn from './UI/RadioBtn';
 import PledgeForm from './PledgeForm';
 import ProjectOptionRemainder from './ProjectOptionRemainder';
+
+type ProjectOptionProps = Project & {
+    showRadio: boolean;
+};
 
 const ProjectOption = ({
     id,
@@ -16,15 +21,15 @@ const ProjectOption = ({
     description,
     remaining,
     showRadio,
-}) => {
+}: ProjectOptionProps) => {
     const [currentAmount, setCurrentAmount] = useState(price);
     const { isMobile, selectedID, setSelectedID, selectionMenuIsVisible } =
         useProjectSelection();
     const { dispatch, setPledgeSuccessful } = useProjects();
 
     const isChecked = selectedID === id;
-    const outOfStock = remaining <= 0 ? true : false;
-    const currentMenuSelection =
+    const outOfStock = remaining === 0 ? true : false;
+    const currentInStockMenuSelection =
         selectionMenuIsVisible && isChecked && showRadio && !outOfStock;
 
     const isBasicPledge = !price && !remaining;
@@ -44,7 +49,7 @@ const ProjectOption = ({
     return (
         <section
             className={`group flex flex-col gap-5 bg-white rounded-lg p-5 border border-solid ${
-                currentMenuSelection
+                currentInStockMenuSelection
                     ? `border-primary-moderate-cyan border-2`
                     : !outOfStock
                     ? `border-neutral-dark-gray/30`
@@ -58,7 +63,10 @@ const ProjectOption = ({
             <div className="flex gap-4">
                 {showRadio && (
                     <RadioBtn
-                        currentMenuSelection={currentMenuSelection}
+                        id={id}
+                        currentInStockMenuSelection={
+                            currentInStockMenuSelection
+                        }
                         outOfStock={outOfStock}
                     />
                 )}
@@ -126,7 +134,7 @@ const ProjectOption = ({
                     </PrimaryBtn>
                 )}
             </div>
-            {currentMenuSelection && (
+            {currentInStockMenuSelection && (
                 <div
                     className={`sm:flex-row sm:justify-between flex flex-col items-center pt-6 gap-5 border-t-2`}
                 >
@@ -137,7 +145,10 @@ const ProjectOption = ({
                     )}
 
                     <m.div
-                        transition={{ duration: 0.2, ease: 'easeOut' }}
+                        transition={{
+                            duration: 0.2,
+                            ease: 'easeOut',
+                        }}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         className="relative sm:w-full flex justify-end"

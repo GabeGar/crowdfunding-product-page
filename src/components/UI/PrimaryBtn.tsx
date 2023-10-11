@@ -1,6 +1,11 @@
 import { useProjectSelection } from '../../contexts/ProjectSelectionContext';
 
-const PrimaryBtn = ({ isDisabled, children }) => {
+interface PrimaryBtn {
+    isDisabled: boolean;
+    children: React.ReactNode;
+}
+
+const PrimaryBtn = ({ isDisabled, children }: PrimaryBtn) => {
     const { setSelectionMenuIsVisible } = useProjectSelection();
     const isBookMarkSibling = children === 'Back this project';
 

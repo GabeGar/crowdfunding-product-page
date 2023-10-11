@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import MobileMenuProvider from './contexts/MobileMenuContext.jsx';
-import App from './App.jsx';
+import ProjectSelectionContextProvider from './contexts/ProjectSelectionContext.tsx';
+import ProjectContextProvider from './contexts/ProjectContext.js';
+import MobileMenuProvider from './contexts/MobileMenuContext.tsx';
+import App from './App.js';
 import './index.css';
-import ProjectSelectionContextProvider from './contexts/ProjectSelectionContext.jsx';
-import ProjectContextProvider from './contexts/ProjectContext.jsx';
 
-ReactDOM.createRoot(document.querySelector('#root')).render(
+ReactDOM.createRoot(document.querySelector('#root') as HTMLDivElement).render(
     <React.StrictMode>
         <ProjectSelectionContextProvider>
             <ProjectContextProvider>

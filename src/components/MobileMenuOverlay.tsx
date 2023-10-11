@@ -16,25 +16,24 @@ const MobileMenu = () => {
     };
 
     useEffect(() => {
-        const html = document.querySelector('html');
+        const html = document.querySelector('html') as HTMLElement;
         html.style.overflow = 'hidden';
 
         return () => {
-            html.style = null;
+            html.style.overflow = '';
         };
     }, []);
 
     return (
         <Overlay>
             <m.div
-                key={'mobile-menu'}
-                transition={{ duration: 0.2, ease: 'easeInOut' }}
+                transition={{ duration: 0.2, ease: 'easeIn' }}
                 initial={{ opacity: 0, y: -500 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -500 }}
             >
                 <div className="flex justify-between">
-                    <Logo />
+                    <Logo classes="" />
                     <button onClick={handleExitMobileMenu}>
                         <img src={closeMenu} alt="Exit menu" />
                     </button>
@@ -78,7 +77,7 @@ const MobileMenu = () => {
 const MobileMenuOverlay = () => {
     return createPortal(
         <MobileMenu />,
-        document.querySelector('#overlay--root'),
+        document.querySelector('#overlay--root') as HTMLDivElement,
     );
 };
 

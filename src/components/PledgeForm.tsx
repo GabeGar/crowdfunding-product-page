@@ -1,8 +1,17 @@
+import { FormEvent } from 'react';
 import { useProjects } from '../contexts/ProjectContext';
 
 import SecondaryBtn from './UI/SecondaryBtn';
 
 const MAX_AMOUNT = 9999;
+
+interface PledgeFormProps {
+    isMobile: boolean;
+    price: number | undefined;
+    selectedId: number;
+    currentAmount: number | undefined;
+    setCurrentAmount: React.Dispatch<React.SetStateAction<number | undefined>>;
+}
 
 const PledgeForm = ({
     isMobile,
@@ -10,7 +19,7 @@ const PledgeForm = ({
     selectedId,
     currentAmount,
     setCurrentAmount,
-}) => {
+}: PledgeFormProps) => {
     const { dispatch, setPledgeSuccessful } = useProjects();
 
     const handlePledgeSubmission = () => {
@@ -30,7 +39,7 @@ const PledgeForm = ({
         setPledgeSuccessful(true);
     };
 
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = (e: FormEvent) => {
         e.preventDefault();
         handlePledgeSubmission();
     };

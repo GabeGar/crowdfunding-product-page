@@ -1,9 +1,16 @@
+interface ProjectOptionRemainderProps {
+    outOfStock: boolean;
+    remaining: number | undefined;
+    isBasicPledge: boolean;
+    selectionMenuIsVisible: boolean;
+}
+
 const ProjectOptionRemainder = ({
     outOfStock,
     remaining,
     isBasicPledge,
     selectionMenuIsVisible,
-}) => {
+}: ProjectOptionRemainderProps) => {
     return (
         <p
             className={`${
