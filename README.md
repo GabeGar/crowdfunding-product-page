@@ -43,8 +43,9 @@ Users should be able to:
 ### Built with
 
 -   Mobile-first workflow
+-   [TypeScript](https://www.typescriptlang.org/)
 -   [React](https://reactjs.org/) - JS library
--   [Framer](https://www.framer.com/motion/) -ReactJS library
+-   [Framer](https://www.framer.com/motion/) - ReactJS library
 -   [Tailwind](https://tailwindcss.com/) - CSS framework
 -   Semantic HTML5 markup
 -   Flexbox
@@ -53,6 +54,7 @@ Users should be able to:
 
 -   How to utilize and implement the framer-motion react library in my project, for handling animations and transitions.
 -   Reinforced the concept of react's built-in global state management system, with createContext/useContext and useReducer hook, combination.
+-   Learned typescript and migrated the project originally built in jsx to tsx.
 
 ### Continued development
 
